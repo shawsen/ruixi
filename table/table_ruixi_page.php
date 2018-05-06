@@ -24,7 +24,7 @@ class table_ruixi_page extends discuz_table
 
     public function getByPkey($pkey)
     {
-        $sql = "SELECT pid,pkey,lan,title,content,views FROM ".DB::table($this->_table)." WHERE pkey='$pkey'";
+        $sql = "SELECT pid,pkey,mid,lan,title,content,views FROM ".DB::table($this->_table)." WHERE pkey='$pkey' AND isdel=0";
         return DB::fetch_all($sql);
     }
 
@@ -53,6 +53,80 @@ class table_ruixi_page extends discuz_table
         return $this->update($pid,$data);
     }/*}}}*/
 
+
+    // 查询接口
+    public function query()
+    {/*{{{*/
+        $return = array(
+            "totalProperty" => 0,
+            "root" => array(),
+        );
+        $key   = ruixi_validate::getNCParameter('key','key','string');
+        $mid   = ruixi_validate::getNCParameter('mid','mid','string');
+        $sort  = ruixi_validate::getOPParameter('sort','sort','string',1024,'ctime');
+        $dir   = ruixi_validate::getOPParameter('dir','dir','string',1024,'DESC');
+        $start = ruixi_validate::getOPParameter('start','start','integer',1024,0);
+        $limit = ruixi_validate::getOPParameter('limit','limit','integer',1024,20);
+        $where = "a.isdel=0 AND lan='zh'";
+        if ($mid!='0') $where.=" AND a.mid='$mid'";
+        if ($key!="") $where.=" AND (pkey like '%$key%')";
+        $table = DB::table($this->_table);
+        $table_module = DB::table('ruixi_module');
+        $sql = <<<EOF
+SELECT SQL_CALC_FOUND_ROWS a.*,b.mname
+FROM $table as a
+LEFT JOIN $table_module as b ON a.mid=b.mid
+WHERE $where
+ORDER BY a.$sort $dir
+LIMIT $start,$limit
+EOF;
+        $return["root"] = DB::fetch_all($sql);
+        $row = DB::fetch_first("SELECT FOUND_ROWS() AS total");
+        $return["totalProperty"] = $row["total"];
+        return $return;
+    }/*}}}*/
+
+
+    // 设置保存
+    public function setEnable()
+    {/*{{{*/
+        $id = ruixi_validate::getNCParameter('id','id','string');
+        $enable = ruixi_validate::getNCParameter('enabled','enabled','integer');
+        $sql = "UPDATE ".DB::table($this->_table)." SET enabled='$enable' WHERE pkey='$id'";
+        return DB::query($sql);
+    }/*}}}*/
+
+    // 设置显示顺序
+    public function setDisplayorder()
+    {/*{{{*/
+        $id = ruixi_validate::getNCParameter('id','id','string');
+        $value = ruixi_validate::getNCParameter('value','value','integer');
+        $sql = "UPDATE ".DB::table($this->_table)." SET displayorder='$value' WHERE pkey='$id'";
+        return DB::query($sql);
+    }/*}}}*/
+
+    // 创建页面
+    public function createPage()
+    {/*{{{*/
+        $record = array (
+            'pkey' => ruixi_validate::getNCParameter('pkey','pkey','string',1024),
+            'mid'  => ruixi_validate::getNCParameter('mid','mid','string',1024),
+            'ctime'=> date('Y-m-d H:i:s'),
+            'displayorder' => 255,
+            'enabled' => 1,
+        ); 
+
+        $lans = array('zh','en');
+        foreach ($lans as $lan) {
+            $record['lan'] = $lan;
+            $this->insert($record);
+        }
+        return 0;
+    }/*}}}*/
+    
+
+
+
     ////////////////////////////////////////////
 
 
@@ -64,33 +138,6 @@ class table_ruixi_page extends discuz_table
         return DB::fetch_all($sql);
     }
 
-    // 查询接口
-    public function query()
-    {/*{{{*/
-        $return = array(
-            "totalProperty" => 0,
-            "root" => array(),
-        );
-        $key   = ruixi_validate::getNCParameter('key','key','string');
-        $sort  = ruixi_validate::getOPParameter('sort','sort','string',1024,'id');
-        $dir   = ruixi_validate::getOPParameter('dir','dir','string',1024,'DESC');
-        $start = ruixi_validate::getOPParameter('start','start','integer',1024,0);
-        $limit = ruixi_validate::getOPParameter('limit','limit','integer',1024,20);
-        $where = "isdel=0";
-        if ($key!="") $where.=" AND (name like '%$key%')";
-        $table = DB::table($this->_table);
-        $sql = <<<EOF
-SELECT SQL_CALC_FOUND_ROWS a.*
-FROM $table as a
-WHERE $where
-ORDER BY $sort $dir
-LIMIT $start,$limit
-EOF;
-        $return["root"] = DB::fetch_all($sql);
-        $row = DB::fetch_first("SELECT FOUND_ROWS() AS total");
-        $return["totalProperty"] = $row["total"];
-        return $return;
-    }/*}}}*/
 
     // 保存记录
     public function save()
@@ -118,14 +165,6 @@ EOF;
     {/*{{{*/
         $id = ruixi_validate::getNCParameter('id','id','integer');
         return $this->update($id,array('isdel'=>1));
-    }/*}}}*/
-
-    // 设置保存
-    public function setEnable()
-    {/*{{{*/
-        $id = ruixi_validate::getNCParameter('id','id','integer');
-        $enable = ruixi_validate::getNCParameter('enabled','enabled','integer');
-        return $this->update($id,array('enabled'=>$enable));
     }/*}}}*/
 
 

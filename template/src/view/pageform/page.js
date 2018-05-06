@@ -14,10 +14,14 @@ define(function(require){
         for (var i=0;i<menu.length;++i) {
             var im = menu[i];
             var cls = im.id==params.lan ? ' class="mwt-active"' : '';
-            lis.push('<li'+cls+'><a href="#/page~pkey=company_introduction&lan='+im.id+'">'+im.name+'</a></li>');
+            lis.push('<li'+cls+'><a href="#/page~pkey='+params.pkey+'&lan='+im.id+'">'+im.name+'</a></li>');
         }
         var code = '<h1 style="margin:0 0 10px;padding:0;font:normal 14px \'microsoft yahei\';">编辑页面 (#'+params.pkey+')</h1>'+
-            '<div style="margin-bottom:10px;"><ul class="mwt-nav mwt-nav-tabs">'+lis.join('')+'</div>'+
+            '<div style="margin-bottom:10px;">'+
+              '<ul class="mwt-nav mwt-nav-tabs">'+lis.join('')+
+                '<a style="float:right" class="mwt-btn mwt-btn-primary mwt-btn-sm" href="plugin.php?id=ruixi:page&p='+params.pkey+'" target="_blank">查看页面</a>'+
+              '</ul>'+
+            '</div>'+
             '<table class="mwt-formtab">'+
                 '<tr>'+
                     '<td width="60">标 题:</td>'+

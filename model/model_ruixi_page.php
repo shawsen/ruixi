@@ -16,6 +16,7 @@ class model_ruixi_page
             'title' => $pkey,
             'content' => '',
             'views' => 0,
+            'mid' => '',
         );
         $pages = C::t('#ruixi#ruixi_page')->getByPkey($pkey);
         if (empty($pages)) return $res;
@@ -30,12 +31,44 @@ class model_ruixi_page
                     'title' => $page['title'],
                     'content' => htmlspecialchars_decode(discuzcode($page['content'])),
                     'views' => $page['views'],
+                    'mid' => $page['mid'],
                 );
                 break;
             }
         }
         return $res;
 	}/*}}}*/
+
+    // 根据模块ID获取显示的页面列表
+    public function getPagesByModule($mid)
+    {/*{{{*/
+        $pageList = array();
+        $lan = C::m('#ruixi#ruixi_lang')->getLanguage();
+        $table = DB::table('ruixi_page');
+        $sql = "SELECT pkey,lan,title,url FROM $table WHERE mid='$mid' AND isdel=0 ORDER BY displayorder ASC";
+        $res = DB::fetch_all($sql);
+        if (empty($res)) return $pageList;
+
+        $map = array();
+        foreach($res as &$im) {
+            $pkey = $im['pkey'];
+            if (!isset($map[$pkey])) $map[$pkey] = $im;
+            else if ($im['lan']==$lan) $map[$pkey] = $im;
+        }
+
+        // 封装列表
+        $siteurl = ruixi_env::get_siteurl();
+        foreach ($map as $k => $im) {
+            $im = $map[$k];
+            $pageList[] = array (
+                'title' => $im['title'],
+                'url' => $siteurl."/plugin.php?id=ruixi:page&p=".$im['pkey'],
+            );
+        }
+        return $pageList; 
+    }/*}}}*/
+    
+
 
     public function getPageList(array &$pkeys)
     {/*{{{*/

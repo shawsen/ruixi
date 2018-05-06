@@ -19,6 +19,7 @@ class model_ruixi_lang
         'home' => '主页',
         'how_to_buy' => '购买方式',
         'companyIntroduction' => '公司简介',
+        'careers' => '工作机会',
         'contact' => '联系我们',
 
         'productSearch' => '产品搜索',
@@ -30,6 +31,7 @@ class model_ruixi_lang
     (/*{{{*/
         'companyName' => 'Ruixi Sience Company',
         'companyIntroduction' => 'Company',
+        'careers' => 'Careers',
 
         'home' => 'Home',
         'how_to_buy' => 'How To Buy',

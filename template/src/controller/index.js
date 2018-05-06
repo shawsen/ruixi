@@ -12,15 +12,26 @@ define(function(require){
             {name:'全局配置', icon:'fa fa-bars', submenu:[
                 {name:'首页Banner',action:'banner'},
             ]},
-            {name:'页面模块', icon:'fa fa-bars', submenu:[
-                {name:'公司简介',action:'company'},
-            ]},
+            {name:'模块管理', icon:'fa fa-bars', submenu:[
+                {name:'模块列表',action:'modules'},
+                {name:'页面列表',action:'pages'}
+            ]}
         ]
     };
 
     o.indexAction=function() {
-        window.location = '#/index/banner';
+        window.location = '#/index/modules';
     };  
+
+    // 模块列表
+    o.modulesAction=function(erurl) {
+        require('view/modules/page').execute('frame-center',erurl.getQuery());
+    };
+    // 页面列表
+    o.pagesAction=function(erurl) {
+        require('view/pages/page').execute('frame-center',erurl.getQuery());
+    };
+
 
     o.bannerAction=function() {
         var code = '首页Banner';

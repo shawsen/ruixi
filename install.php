@@ -46,6 +46,30 @@ runquery($sql);
 runquery("ALTER TABLE `$table` ENGINE=INNODB");
 /*}}}*/
 
+// 模块
+$table = DB::table('ruixi_module');
+/*{{{*/
+$sql = "CREATE TABLE IF NOT EXISTS $table ". <<<EOF
+(
+`mid` varchar(64) NOT NULL DEFAULT '' COMMENT '模块ID', 
+`mname` varchar(64) NOT NULL DEFAULT '' COMMENT '模块名',
+`mname_zh` varchar(64) NOT NULL DEFAULT '' COMMENT '中文名',
+`mname_en` varchar(64) NOT NULL DEFAULT '' COMMENT '英文名',
+`ctime` datetime NOT NULL DEFAULT "0000-00-00 00:00:00" comment '创建日期',
+`mtime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+`isdel` tinyint(1) NOT NULL DEFAULT '0' COMMENT '删除标志(0:未删,1:已删)',
+PRIMARY KEY (`mid`)
+) ENGINE=MyISAM COMMENT '模块表'
+EOF;
+runquery($sql);
+$sql="INSERT IGNORE INTO $table (mid,mname,mname_zh,mname_en,ctime) VALUES ". <<<EOF
+('product','产品','产品','Products','$addtime'),
+('company','公司简介','公司简介','Company','$addtime'),
+('career','工作机会','工作机会','Careers','$addtime')
+EOF;
+runquery($sql);
+/*}}}*/
+
 // 模块页面
 $table = DB::table('ruixi_page');
 /*{{{*/
@@ -54,24 +78,27 @@ $sql = "CREATE TABLE IF NOT EXISTS $table ". <<<EOF
 `pid` bigint unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID(自增主键)', 
 `pkey` varchar(64) NOT NULL DEFAULT '' COMMENT '标志符',
 `lan` varchar(4) NOT NULL DEFAULT '' COMMENT '语言',
+`mid` varchar(64) NOT NULL DEFAULT '' COMMENT '模块ID',
 `title` varchar(128) NOT NULL DEFAULT '' COMMENT '标题',
 `content` text NOT NULL DEFAULT '' COMMENT '内容',
 `views` int unsigned NOT NULL DEFAULT '0' COMMENT '阅读次数',
 `url` varchar(128) NOT NULL DEFAULT '' COMMENT 'URL',
+`displayorder` tinyint unsigned NOT NULL DEFAULT '255' comment '显示顺序',
+`enabled` tinyint(1) NOT NULL DEFAULT '1' COMMENT '启用标志(1:启用)',
 `ctime` datetime NOT NULL DEFAULT "0000-00-00 00:00:00" comment '创建日期',
 `mtime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+`isdel` tinyint(1) NOT NULL DEFAULT '0' COMMENT '删除标志(0:未删,1:已删)',
 PRIMARY KEY (`pid`),
-UNIQUE KEY `uk_pkey_lan` (`pkey`,`lan`)
+UNIQUE KEY `uk_pkey_lan` (`pkey`,`lan`),
+KEY `idx_mid_enabled_isdel` (`mid`,`enabled`,`isdel`)
 ) ENGINE=MyISAM COMMENT '模块页面'
 EOF;
 runquery($sql);
-$sql="INSERT IGNORE INTO $table (pid,pkey,lan,title,content,url,ctime) VALUES ". <<<EOF
-(1,'company_introduction','zh','公司简介','宁波睿熙科技有限公司是光通信领域的全球技术领导者。我们的世界级产品可在网络、存储、无线和有线电视应用中实现语音、视频和数据高速通信的高速通讯。25 年来，我们在光学技术领域不断创造重大技术突破，并为系统制造商提供了所需的大批量产品，以满足网络带宽的爆炸式增长需求。Finisar 业界领先的产品包括光纤收发器、光引擎、有源光缆、光器件、光学仪器、ROADM 和WSS波长管理器、光放大器和光载射频模块。','company','$addtime'),
-(2,'company_introduction','en','Company Overview','','company','$addtime'),
-
-(3,'company_business','zh','主要业务','宁波睿熙科技有限公司的主要业务','company&mod=company_business','$addtime'),
-(4,'company_business','en','What We Do','company_business','company&mod=company_business','$addtime')
-
+$sql="INSERT IGNORE INTO $table (pid,pkey,lan,mid,title,content,url,ctime) VALUES ". <<<EOF
+(1,'company_introduction','zh','company','公司简介','','company','$addtime'),
+(2,'company_introduction','en','company','Company Overview','','company','$addtime'),
+(3,'company_business','zh','company','主要业务','宁波睿熙科技有限公司的主要业务','company&mod=company_business','$addtime'),
+(4,'company_business','en','company','What We Do','company_business','company&mod=company_business','$addtime')
 EOF;
 runquery($sql);
 /*}}}*/

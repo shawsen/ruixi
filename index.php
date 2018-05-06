@@ -14,7 +14,7 @@ if (preg_match('/^t_/i',$_GET['module'])) {
     $discuz->init();
     require_once RUIXI_PLUGIN_PATH."/class/env.class.php";
     try {
-        $t = '#xcoa#'.substr($_GET['module'],2);
+        $t = '#ruixi#'.substr($_GET['module'],2);
         $action = isset($_GET['action']) ? $_GET['action'] : ""; 
         $res = C::t($t)->$action();
         ruixi_env::result(array('data'=>$res));
