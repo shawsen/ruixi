@@ -1,0 +1,39 @@
+<!--{template ruixi:common/header}-->
+<!--{template ruixi:common/common_banner}-->
+<!--{eval
+$sideTitle=$lang['companyIntroduction'];
+$sideList=C::m('#ruixi#ruixi_page')->getPageList(array(
+    'company_business',
+));
+
+$mod=isset($_GET['mod']) ? $_GET['mod'] : 'company_introduction';
+$page=C::m('#ruixi#ruixi_page')->getPage($mod);
+}-->
+<div class="mwt-row mwt-row-flex wp main-body">
+  <div class="mwt-col-fill artical-pannel">
+    <h1>{$page[title]}</h1>
+    <div class="artical-body">
+      {$page[content]}
+      <!--{if $auth>0}-->
+        <div class="adminbar">
+          <a href="$_G['siteurl']/plugin.php?id=ruixi:admin#/page~pkey=$mod&lan=$language" target="_blank" class="admina">编辑</a>
+        </div>
+      <!--{/if}-->
+    </div>
+  </div>
+  <div class="mwt-col-wd" style="width:350px;">
+    <div class="side-pannel">
+      <div class="title">{$sideTitle}</div>
+      <div class="body">
+        <ul class="mwt-ul">
+          <!--{loop $sideList $k $im}-->
+          <li><a href="{$im[url]}">{$im[title]}</a></li>
+          <!--{/loop}-->
+        </ul>
+      </div>
+    </div>
+    <!--{template ruixi:common/sidearea}-->
+  </div>
+</div>
+
+<!--{template ruixi:common/footer}-->

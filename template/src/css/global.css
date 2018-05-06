@@ -1,0 +1,48 @@
+
+.wp {width:95%;margin:0 auto;}
+
+/* header */
+.header {background:#404041;border-bottom:2px solid #fff;padding:20px 10px 20px;}
+.logo {text-decoration:none;}
+.logo img {height:54px;vertical-align:middle;}
+.logo span {font-weight:bold;font-size:22px;display:inline-block;vertical-align:middle;color:#fff;padding: 0 10px;font-family:'HeiTi';}
+
+.menuul {display:inline-block;margin:0;padding:0;vertical-align:middle;}
+.menuul li {list-style-type:none;margin:0;padding:0 0 0 8px;float:left;color:#fff;}
+.menuul a {text-decoration:none;color:#fff;font-family:'HeiTi';font-size:14px;}
+.menuul a:hover {color:#03A9F4;}
+
+.langul {margin-right:20px;}
+.langul a{font-size:16px;padding:0 5px;}
+.langul span {border-left:solid 1px #fff;}
+
+.nav li {padding-left:30px;}
+.nav li a{font-size:19px;}
+
+/* main-body */
+.main-body {margin:10px auto 20px;}
+
+
+/* 侧边栏 */
+.side-pannel {margin:10px 0 20px 50px;border: 1px solid #a6a8ab;padding:0px;border-radius: 0;}
+.side-pannel .title {font-family:'HeiTi';font-size:18px;color:#fff;background:#0474bb;padding:10px;}
+.side-pannel .body {padding:10px;}
+
+
+.mwt-ul {padding:0;margin:0 0 0 10px;}
+.mwt-ul>li {list-style:disc;margin-left:10px;}
+.mwt-ul>li>a {
+    max-width: 230px;
+    overflow: hidden;
+    display: inline-block;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    text-decoration: none;
+    color:#58595b;
+    font-size:13px;font-family:'HeiTi';
+    vertical-align: text-bottom;
+}
+.mwt-ul>li>a:hover {text-decoration:underline;}
+
+
+

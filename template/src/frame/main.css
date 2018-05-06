@@ -1,0 +1,46 @@
+/* 全局样式 */
+body {background:#fff;}
+#frame-west{border-right:solid 1px #fff;background:#f2f2f2;}
+
+/* 左部导航区 */
+.leftmenu {width:100%;}
+#leftnavexpbtn {color: #F80;font-size:11px;line-height:25px;text-align:center;letter-spacing:2px;cursor:pointer;}
+#leftnavexpbtn:hover {font-size:13px;}
+.leftmenu,.leftmenu ul,.leftmenu li{list-style-type:none;margin:0;padding:0}
+.leftmenu>li {border-top:solid 1px #fff; border-bottom:solid 1px #c8c8c8;}
+.leftmenu>li>a {display:block; padding:10px 30px 10px 15px;font-size:13px;font-family:"microsoft yahei";color:#666;position:relative;}
+.menu-close>ul {display:none;}
+.menu-open>a:after {display:inline-block;
+    font:normal normal normal 14px/1 FontAwesome;font-size:inherit;-webkit-font-smoothing: antialiased;
+    content:"\f106";position:absolute;top:12px;right:5px;font-size:16px;
+}
+.menu-close>a:after {display: inline-block;font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;-webkit-font-smoothing: antialiased;content: "\f107";
+    position:absolute;top:12px;right:5px;font-size:16px;
+}
+.menu-open>ul {display:block;}
+.submenu>li>a {display:block; padding:3px 30px 8px;font-size:12px;font-family:"microsoft yahei";}
+.leftmenu a{color:#666; text-decoration:none;}
+.leftmenu a:hover,.leftmenu a.active{text-decoration:none;color:#FF8907;}
+.leftmenu i {width:13px;text-align:center;}
+.leftmenu li.clearfix{border-bottom:none;}
+
+/* 面包屑导航 */
+.posul {display:inline-block;margin:0;padding:0;}
+.posul li {list-style-type:none;margin:0;padding:0;float:left;line-height:30px;color:#666;font-size:13px;}
+.posul li a {text-decoration:none;color:#666;}
+.posul li a:hover {color:#FF8907;}
+
+/* 个人中心 */
+.uctfm {border-collapse:collapse;font-size:13px;width:100%;}
+.uctfm th:after {content:'：';}
+.uctfm th {text-align:left;color:#666;font-weight:normal;}
+.uctfm tr:last-child {border-top:dashed 1px #ccc;}
+.uctfm th,.uctfm td {padding:5px 0;}
+
+
+.gridfill {position:absolute;left:10px;right:10px;bottom:10px;top:36px;}
+
+.grida {color:#048AF5;text-decoration:none;}
+.grida:hover {text-decoration:underline;}
+

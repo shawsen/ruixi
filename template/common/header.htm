@@ -1,0 +1,57 @@
+<!--{eval
+$language = C::m('#ruixi#ruixi_lang')->getLanguage();
+$lang = C::m('#ruixi#ruixi_lang')->get();
+}-->
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>{$lang[companyName]}</title>
+  <link rel="icon" href="{$plugin_path}/template/static/logo.png" type="image/png">
+  <link type="text/css" rel="stylesheet" href="{$plugin_path}/template/libs/mwt/4.0/mwt.min.css">
+  <link type="text/css" rel="stylesheet" href="{$plugin_path}/template/src/base.css">
+  <script type="text/javascript" src="$_G['siteroot']static/js/common.js"></script>
+  <script type="text/javascript" src="{$plugin_path}/template/libs/jquery/1.11.2/jquery.min.js"></script>
+  <script type="text/javascript" src="{$plugin_path}/template/libs/mwt/4.0/mwt.min.js"></script>
+  <script type="text/javascript">var charset='{CHARSET}',cookiepre='{$_G[config][cookie][cookiepre]}',cookiedomain='{$_G[config][cookie][cookiedomain]}',cookiepath='{$_G[config][cookie][cookiepath]}';var language='{$language}';
+    function setlang(l){setcookie('lang',l);window.location.reload();}
+  </script>
+</head>
+<body>
+<div class="header">
+  <div class="mwt-row mwt-row-flex wp">
+    <div class="mwt-col-wd" style="width:450px;padding-top:8px;">
+      <a href="$_G['siteroot']plugin.php?id=ruixi:index" class="logo"><img src="{$plugin_path}/template/static/logo.png"><span>{$lang[companyName]}</span></a>
+    </div>
+    <div class="mwt-col-fill" style="text-align:right;">
+      <div class="menu-top">
+        <ul class="menuul langul">
+          <li><a href="javascript:setlang('en');">English</a></li>
+          <li><span></span></li>
+          <li><a href="javascript:setlang('zh');">中文</a></li>
+        </ul>
+        <ul class="menuul">
+          <li><a href="">{$lang[contact]}</a></li>
+          <li><a href="">{$lang[how_to_buy]}</a></li>
+          <li><a href="">{$lang[home]}</a></li>
+        </ul>
+        <div class="mwt-search"><input id="sokey" type="text" class="mwt-field" style="width:200px;" placeholder="全网站搜索"><i id="sokeybtn" class="fa fa-search"></i></div>
+      </div>
+      <div class="menu-bottom" style="margin-top:20px;">
+        <ul class="menuul nav">
+          <li><a href="$_G['siteroot']plugin.php?id=ruixi:product">产品</a></li>
+          <li><a href="$_G['siteroot']plugin.php?id=ruixi:product">市场</a></li>
+          <li><a href="$_G['siteroot']plugin.php?id=ruixi:product">技术</a></li>
+          <li><a href="$_G['siteroot']plugin.php?id=ruixi:product">投资者</a></li>
+          <li><a href="$_G['siteroot']plugin.php?id=ruixi:company"><!--{$lang[companyIntroduction]}--></a></li>
+          <li><a href="$_G['siteroot']plugin.php?id=ruixi:product">工作机会</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+

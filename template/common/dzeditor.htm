@@ -1,0 +1,56 @@
+<!-- import discuz html editor -->
+<textarea id="uchome-ttHtmlEditor" style="display:none;"></textarea>
+<script type="text/javascript" src="static/js/common.js"></script>
+<script type="text/javascript" src="static/js/bbcode.js"></script>
+<script type="text/javascript" src="static/image/editor/editor_function.js"></script>
+<script>
+EXTRAFUNC['bbcode2html'] = {};
+EXTRAFUNC['html2bbcode'] = {};
+var allowhtml = true;
+var allowbbcode = true;
+var allowimgcode = false;
+var allowsmilies = false;
+
+// 获取编辑器dom html代码
+function get_html_editor(style) 
+{
+	if (!style || style=='') {
+		style = "width:100%;height:400px;border:1px solid #C5C5C5;position:relative;";
+	}
+	var code = "<iframe src='home.php?mod=editor&charset={CHARSET}&allowhtml=1&isportal=0' "+
+			"name='uchome-ifrHtmlEditor' id='uchome-ifrHtmlEditor' scrolling='no' style='"+style+"' border=0 frameborder=0></iframe>";
+	return code;
+}
+
+
+// 获取编辑器的内容(bbcode格式)
+function get_editor_bbcode() 
+{
+	edit_save();
+	var editor = document.getElementById("uchome-ttHtmlEditor");
+    return html2bbcode(editor.value);
+}
+
+// 设置编辑器内容
+function set_editor_bbcode(code)
+{
+	var p = window.frames['uchome-ifrHtmlEditor'];
+	var dom = p.document.getElementById('uchome-editstatus');
+	if (!dom) {
+		setTimeout(function(){
+			set_editor_bbcode(code);
+		},1000);
+	} else {
+		p.document.getElementById('icoImg').style.display = 'none';
+		p.document.getElementById('faceBox').style.display = 'none';
+		p.document.getElementById('icoSwf').style.display = 'none';
+
+		var str = bbcode2html(code);   //!< 将BBCODE转成html代码
+		var obj = p.window.frames['HtmlEditor'];
+		obj.document.body.innerHTML = str;
+		//console.log("set_editor "+str);
+	}
+	//edit_insert(bbcode2html(code));
+}
+</script>
+
