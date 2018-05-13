@@ -1,0 +1,62 @@
+<div class="wall" style="background:#E6E7E8;">
+  <div class="wp" style="padding:20px 0 15px;color:#58595b;">
+    <h2 style="margin:0 0 20px;font:bold 15px 'HeiTi';">
+        技术创新者|全面的产品组合|值得信赖的合作伙伴|
+    </h2>
+    <p style="font:normal 13px 'HeiTi';">Finisar 是全球最大的光通信器件产品的供应商。近三十年来，我们通过创新、具有突破性的光技术和提供极大改善我们通讯方式的世界级产品，不断引领行业的发展。加入我们。</p>
+  </div>
+</div>
+
+<div class="mwt-row wp" style="margin:20px auto 20px;">
+  <div class="mwt-col-5 block">
+    <!--公司新闻-->
+    <div class="block-title" style="background:#7b904b;">
+      <a href="$_G['siteroot']plugin.php?id=ruixi:news">{$lang[news]}</a>
+    </div>
+    <div class="block-body">
+      <table class="ultab">
+        <!--{loop $newsList $k $im}-->
+        <tr>
+          <td><a href="{$im[url]}"><i class="sicon-doc" style="font-size:13px;"></i> {$im[title]}</a></td>
+          <td width="60" align="right">{$im[ctime]}</td>
+        </tr>
+        <!--{/loop}-->
+      </table>
+      <a class="amore" href="$_G['siteroot']plugin.php?id=ruixi:news">{$lang[viewMore]} <i class="sicon-arrow-right"></i></a>
+    </div>
+  </div>
+
+  <!--产品-->
+  <div class="mwt-col-4 block">
+    <div class="block-title" style="background:#087983;">
+      <a href="$_G['siteroot']plugin.php?id=ruixi:product">{$lang[product]}</a>
+    </div>
+    <div class="block-body">
+      <table class="ultab">
+        <!--{loop $productCateList $k $im}-->
+        <tr>
+          <td><a href="{$im[url]}"><i class="fa fa fa-caret-right" style="font-size:13px;"></i> {$im[title]}</a></td>
+          <td></td>
+        </tr>
+        <!--{/loop}-->
+      </table>
+      <a class="amore" href="$_G['siteroot']plugin.php?id=ruixi:product">{$lang[viewMore]} <i class="sicon-arrow-right"></i></a>
+    </div>
+  </div>
+
+  <!--公司介绍-->
+  <div class="mwt-col-3 block">
+    <div class="block-title" style="background:#0474bb;">
+      <a href="$_G['siteroot']plugin.php?id=ruixi:page&p=company_introduction">{$lang[companyIntroduction]}</a>
+    </div>
+    <div class="block-body">
+      <ul class="home-ul">
+        <!--{loop $companyIntroductionPageList $k $im}-->
+        <li><a href="{$im[url]}">{$im[title]}</a></li>
+        <!--{/loop}-->
+      </ul>
+      <a class="amore" href="$_G['siteroot']plugin.php?id=ruixi:page&p=company_introduction">{$lang[viewMore]} <i class="sicon-arrow-right"></i></a>
+    </div>
+  </div>
+
+</div>

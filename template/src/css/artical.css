@@ -5,11 +5,16 @@
     font-size:13px;font-family:'HeiTi';
     line-height: 1.5em;
     color: #58595b;
+    margin-bottom:10px;
 }
 .artical-body * {font-family:'HeiTi';}
 
 .artical-body ul {margin:0}
 .artical-body a {color:#2196F3;}
 
-
+.sotab { width:100%;border-collapse:collapse; }
+.sotab td {vertical-align:top;padding:5px 0 5px;}
+.sotab a.title {font:normal 16px Arial,'HeiTi';color:#2196F3;text-decoration:none;display:block;padding:0 0 5px;}
+.sotab a.title:hover {text-decoration:underline;}
+.sotab .sub {text-align:right;color:#999;}
 

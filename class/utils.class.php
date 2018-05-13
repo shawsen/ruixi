@@ -84,5 +84,48 @@ class ruixi_utils
         }
 		echo $content;
     }
+
+
+    // 获取摘要
+    public static function get_summary($message,$maxlen=180)
+    {/*{{{*/
+        $message = self::strip_all_tags($message);
+        if (mb_strlen($message,'UTF8') > $maxlen) {
+            $message = mb_substr($message,0,$maxlen,'UTF8').'...';
+        }
+        return $message;
+    }/*}}}*/
+
+
+    // 去除所有标签(包括bbcode标签)
+    public static function strip_all_tags($message)
+    {/*{{{*/
+        require_once libfile('class/bbcode');
+        require_once libfile('function/discuzcode');
+        $bbcode = new bbcode();
+        $message = $bbcode->bbcode2html($message,1);
+        $message = discuzcode($message);
+        $message = preg_replace("/\[attach\](\d+)\[\/attach\]/i", '', $message);
+        $message = preg_replace("/\[password\](.+)\[\/password\]/i", '', $message);
+        $message = htmlspecialchars_decode($message);
+        $message = preg_replace("/&nbsp;/i", '', $message);
+        $message = strip_tags($message);
+        return $message;
+    }/*}}}*/
+    
+    // 获取页号列表
+    public static function get_pages($page,$limit,$totalProperty)
+    {/*{{{*/
+        $totalPageNum = ceil($totalProperty / $limit);
+        $startPage = $page - 5;
+        if ($startPage<1) $startPage=1;
+        $endPage = $page + 5;
+        if ($endPage > $totalPageNum) $endPage = $totalPageNum;
+        $pageList = array();
+        while($startPage <= $endPage) {
+            $pageList[] = $startPage++;
+        }
+        return $pageList;
+    }/*}}}*/
 }
 ?>

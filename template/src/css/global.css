@@ -25,7 +25,9 @@
 
 /* 侧边栏 */
 .side-pannel {margin:10px 0 20px 50px;border: 1px solid #a6a8ab;padding:0px;border-radius: 0;}
-.side-pannel .title {font-family:'HeiTi';font-size:18px;color:#fff;background:#0474bb;padding:10px;}
+.side-pannel .title {background:#0474bb;padding:10px;}
+.side-pannel .title a {font:normal 18px Arial,'HeiTi';color:#fff;text-decoration:none;}
+/*.side-pannel .title a:hover {text-decoration:underline;}*/
 .side-pannel .body {padding:10px;}
 
 
@@ -44,5 +46,7 @@
 }
 .mwt-ul>li>a:hover {text-decoration:underline;}
 
+
+.empty {font-size:13px;padding:30px;text-align:center;background:#eee;}
 
 

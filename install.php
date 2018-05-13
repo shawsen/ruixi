@@ -46,6 +46,32 @@ runquery($sql);
 runquery("ALTER TABLE `$table` ENGINE=INNODB");
 /*}}}*/
 
+// 配置表
+$table = DB::table('ruixi_setting');
+/*{{{*/
+$sql = "CREATE TABLE IF NOT EXISTS $table ". <<<EOF
+(
+`skey` varchar(255) NOT NULL DEFAULT '' COMMENT '键',
+`svalue` text NOT NULL COMMENT '值', 
+`mtime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+PRIMARY KEY (`skey`)
+) ENGINE=MyISAM COMMENT '配置表'
+EOF;
+runquery($sql);
+// 默认配置
+$home_banner = array (
+    array('img'=>'http://img.shawsen.com/banner/001.jpg','link'=>''),
+    array('img'=>'http://img.shawsen.com/banner/002.jpg','link'=>''),
+    array('img'=>'http://img.shawsen.com/banner/003.jpg','link'=>''),
+);
+$home_banner = serialize($home_banner);
+$sql = "INSERT IGNORE INTO $table (skey,svalue) VALUES ".<<<EOF
+('home_banner','$home_banner'),
+('common_banner','http://img.shawsen.com/banner/004.jpg')
+EOF;
+runquery($sql);
+/*}}}*/
+
 // 模块
 $table = DB::table('ruixi_module');
 /*{{{*/
@@ -64,8 +90,9 @@ EOF;
 runquery($sql);
 $sql="INSERT IGNORE INTO $table (mid,mname,mname_zh,mname_en,ctime) VALUES ". <<<EOF
 ('product','产品','产品','Products','$addtime'),
+('news','新闻发布','新闻发布','News','$addtime'),
 ('company','公司简介','公司简介','Company','$addtime'),
-('career','工作机会','工作机会','Careers','$addtime')
+('career','招贤纳士','招贤纳士','Careers','$addtime')
 EOF;
 runquery($sql);
 /*}}}*/
@@ -83,7 +110,7 @@ $sql = "CREATE TABLE IF NOT EXISTS $table ". <<<EOF
 `content` text NOT NULL DEFAULT '' COMMENT '内容',
 `views` int unsigned NOT NULL DEFAULT '0' COMMENT '阅读次数',
 `url` varchar(128) NOT NULL DEFAULT '' COMMENT 'URL',
-`displayorder` tinyint unsigned NOT NULL DEFAULT '255' comment '显示顺序',
+`displayorder` smallint NOT NULL DEFAULT '255' comment '显示顺序',
 `enabled` tinyint(1) NOT NULL DEFAULT '1' COMMENT '启用标志(1:启用)',
 `ctime` datetime NOT NULL DEFAULT "0000-00-00 00:00:00" comment '创建日期',
 `mtime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
@@ -102,6 +129,81 @@ $sql="INSERT IGNORE INTO $table (pid,pkey,lan,mid,title,content,url,ctime) VALUE
 EOF;
 runquery($sql);
 /*}}}*/
+
+// 产品分类表
+$table = DB::table('ruixi_product_cate');
+/*{{{*/
+$sql = "CREATE TABLE IF NOT EXISTS $table ". <<<EOF
+(
+`id` int unsigned NOT NULL AUTO_INCREMENT COMMENT '分类ID', 
+`name` varchar(64) NOT NULL DEFAULT '' COMMENT '分类名称',
+`name_zh` varchar(64) NOT NULL DEFAULT '' COMMENT '中文名称',
+`name_en` varchar(64) NOT NULL DEFAULT '' COMMENT '英文名',
+`desc_zh` text NOT NULL DEFAULT '' COMMENT '中文介绍', 
+`desc_en` text NOT NULL DEFAULT '' COMMENT '英文介绍',
+`imgurl` varchar(1024) NOT NULL DEFAULT '' COMMENT '图片地址',
+`displayorder` smallint NOT NULL DEFAULT '255' comment '显示顺序',
+`ctime` datetime NOT NULL DEFAULT "0000-00-00 00:00:00" comment '创建日期',
+`mtime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+`isdel` tinyint(1) NOT NULL DEFAULT '0' COMMENT '删除标志(0:未删,1:已删)',
+PRIMARY KEY (`id`)
+) ENGINE=MyISAM COMMENT '产品分类表'
+EOF;
+runquery($sql);
+$sql="INSERT IGNORE INTO $table (id,name,name_zh,name_en,desc_zh,desc_en,ctime) VALUES ". <<<EOF
+('1','光纤收发器','光纤收发器','Optical Transceivers','','','$addtime'),
+('2','光引擎','光引擎','Optical Engines','','','$addtime'),
+('3','有源光缆','有源光缆','Active Optical Cables','','','$addtime'),
+('4','光器件','光器件','Communication Components','','','$addtime'),
+('5','光学仪器','光学仪器','Optical Instrumentation','','','$addtime')
+EOF;
+runquery($sql);
+/*}}}*/
+
+// 产品表
+$table = DB::table('ruixi_product');
+/*{{{*/
+$sql = "CREATE TABLE IF NOT EXISTS $table ". <<<EOF
+(
+`id` int unsigned NOT NULL AUTO_INCREMENT COMMENT '产品ID', 
+`cateid` int unsigned NOT NULL DEFAULT '0' COMMENT '产品分类ID',
+`sn` varchar(64) NOT NULL DEFAULT '' COMMENT '产品型号/序列号', 
+`name` varchar(64) NOT NULL DEFAULT '' COMMENT '分类名称',
+`name_zh` varchar(64) NOT NULL DEFAULT '' COMMENT '中文名称',
+`name_en` varchar(64) NOT NULL DEFAULT '' COMMENT '英文名',
+`desc_zh` text NOT NULL DEFAULT '' COMMENT '中文介绍', 
+`desc_en` text NOT NULL DEFAULT '' COMMENT '英文介绍',
+`ctime` datetime NOT NULL DEFAULT "0000-00-00 00:00:00" comment '创建日期',
+`mtime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+`isdel` tinyint(1) NOT NULL DEFAULT '0' COMMENT '删除标志(0:未删,1:已删)',
+PRIMARY KEY (`id`),
+KEY `idx_cateid_isdel` (`cateid`,`isdel`)
+) ENGINE=MyISAM COMMENT '产品表'
+EOF;
+runquery($sql);
+/*}}}*/
+
+// 图片表
+$table = DB::table('ruixi_images');
+/*{{{*/
+$sql = "CREATE TABLE IF NOT EXISTS $table ". <<<EOF
+(
+`id` int unsigned NOT NULL AUTO_INCREMENT COMMENT '图片ID', 
+`item_type` varchar(32) NOT NULL DEFAULT 'product' COMMENT '关联类型',
+`item_id` bigint unsigned NOT NULL DEFAULT '0' COMMENT '关联ID',
+`url` varchar(1024) NOT NULL DEFAULT '' COMMENT '图片URL',
+`ctime` datetime NOT NULL DEFAULT "0000-00-00 00:00:00" comment '创建日期',
+`mtime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+`isdel` tinyint(1) NOT NULL DEFAULT '0' COMMENT '删除标志(0:未删,1:已删)',
+PRIMARY KEY (`id`),
+KEY `idx_item_type_item_id` (`item_type`,`item_id`)
+) ENGINE=MyISAM COMMENT '图片表'
+EOF;
+runquery($sql);
+runquery("ALTER TABLE `$table` ENGINE=INNODB");
+/*}}}*/
+
+
 
 $finish = TRUE;
 ?>

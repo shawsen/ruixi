@@ -15,29 +15,52 @@ class model_ruixi_lang
         'companyContact' => '0574-62828223',
         'copyright' => '版权所有© 2017 睿熙科技。保留所有权利。 ',
         'privacy' => '隐私权政策',
+        'address' => '公司地址',
+        'contact' => '联系我们',
+        'viewMore' => '查看更多',
 
         'home' => '主页',
-        'how_to_buy' => '购买方式',
-        'companyIntroduction' => '公司简介',
-        'careers' => '工作机会',
-        'contact' => '联系我们',
+        'product' => '产品',
+        'companyIntroduction' => '公司介绍',
+        'careers' => '招贤纳士',
+        'shoppingCart' => '采购车',
 
+        'how_to_buy' => '购买方式',
         'productSearch' => '产品搜索',
 
+        'news' => '公司新闻',
+        'applyJob' => '申请职位',
+        'search' => '搜索',
+        'empty' => '没有相关数据',
+        'buyNow' => '立即采购',
     );/*}}}*/
 
     // 英文
     private $lang_en = array 
     (/*{{{*/
         'companyName' => 'Ruixi Sience Company',
-        'companyIntroduction' => 'Company',
-        'careers' => 'Careers',
+        'companyAddr' => 'No. 366-4 Fengjian Road, Yuyao, Zhejiang',
+        'companyContact' => '0574-62828223',
+        'copyright' => 'Copyright © 2018 All Rights Reserved.',
+        'privacy' => 'Privacy',
+        'address' => 'Address',
+        'contact' => 'Contact',
+        'viewMore' => 'View More',
 
         'home' => 'Home',
-        'how_to_buy' => 'How To Buy',
-        'contact' => 'Contact',
+        'product' => 'Product',
+        'companyIntroduction' => 'Company',
+        'careers' => 'Careers',
+        'shoppingCart' => 'Shopping Cart',
 
+        'how_to_buy' => 'How To Buy',
         'productSearch' => 'Product Search',
+
+        'news' => 'News',
+        'applyJob' => 'Apply The Job',
+        'search' => 'Search',
+        'empty' => 'Get Nothing',
+        'buyNow' => 'Buy Now',
     );/*}}}*/
 
     // 获取选择的语言

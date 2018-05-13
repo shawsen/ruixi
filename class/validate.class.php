@@ -87,7 +87,7 @@ class ruixi_validate
 		if (mb_strlen($str_utf8, "UTF-8") > $maxlen) {
 			return "不能超过".$maxlen."个字";
 		}
-		$illegalCharacters = array('delete', 'null', '||');
+		$illegalCharacters = array('delete');
 		foreach ($illegalCharacters as &$wd) {
 			if (stristr($str_utf8, $wd)) {
 				return "不能包含字符 $wd";

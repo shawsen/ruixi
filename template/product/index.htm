@@ -1,0 +1,44 @@
+<!--{template ruixi:common/header}-->
+<!--{template ruixi:common/common_banner}-->
+<!--{eval
+$page = isset($_GET['page']) ? intval($_GET['page']) : 1;
+$searchResult = C::m('#ruixi#ruixi_page')->search('news','',$page);
+$pages = $searchResult['annex']['pages'];
+$urlPrefix = $_G['siteurl']."/plugin.php?id=ruixi:news&";
+}-->
+<div class="mwt-row mwt-row-flex wp main-body">
+  <div class="mwt-col-fill artical-pannel">
+    <h1>{$lang[product]}</h1>
+    <div class="artical-body">
+      <p>
+      <!--{if $lan=='en'}-->
+With the broadest product portfolio in the industry, Finisar is dedicated to helping our partners leverage the power and speed of optical communications. Our world-class products enable high-speed voice, video and data communications for networking, storage, wireless, and cable TV applications. For three decades, we have created critical breakthroughs in optics technology and supplied manufacturers of networking and telecom equipment with the production volumes needed to meet the exploding demand for network bandwidth.
+      <!--{else}-->
+Finisar 拥有业内最全面的产品组合，并致力于帮助我们的合作伙伴更好地利用更快和更强的光纤通讯网络。我们的世界级产品可在网络、存储、无线和有线电视应用中实现语音、视频和数据高速通信的高速通讯。近三十年来，我们在光纤技术方面取得了关键性突破，并为网络和电信设备制造商提供了为应付日益扩增的网络带宽所需的大量产品。
+      <!--{/if}-->
+      </p>
+    </div>
+
+    <!--产品搜索框-->
+    <div style="background:#087983;padding:10px 20px;margin-bottom:20px;">
+      <div style="font-size:14px;font-family:'HeiTi';margin-bottom:5px;color:#fff;">{$lang[productSearch]}</div>
+      <div class="mwt-search">
+        <input id="sokey" type="text" class="mwt-field" style="width:270px;" placeholder="{$lang[productSearch]}" onchange="soproduct(this.value);">
+        <i id="sokeybtn" class="fa fa-search"></i>
+      </div>
+    </div>
+
+    <!--产品分类列表-->
+    <ul class="imgul">
+      <!--{loop $sideList $k $im}-->
+      <li><a href="{$im[url]}"><div class="img"><img src="{$im[imgurl]}"></div><p>{$im[title]}</p></a></li>
+      <!--{/loop}-->
+    </ul>
+
+  </div>
+  <div class="mwt-col-wd" style="width:350px;">
+    <!--{template ruixi:common/sidearea}-->
+  </div>
+</div>
+
+<!--{template ruixi:common/footer}-->

@@ -1,0 +1,31 @@
+<!--{template ruixi:common/header}-->
+<!--{template ruixi:common/common_banner}-->
+<!--{eval
+$page = isset($_GET['page']) ? intval($_GET['page']) : 1;
+$searchResult = C::m('#ruixi#ruixi_page')->search('news','',$page);
+$pages = $searchResult['annex']['pages'];
+$urlPrefix = $_G['siteurl']."/plugin.php?id=ruixi:news&";
+}-->
+<div class="mwt-row mwt-row-flex wp main-body">
+  <div class="mwt-col-fill artical-pannel">
+    <h1>{$lang[news]}</h1>
+    <div class="artical-body">
+      <hr>
+      <table class="sotab">
+        <!--{loop $searchResult[root] $k $im}-->
+        <tr><td>
+          <a href="{$im[url]}" class="title" target="_blank">{$im[title]}</a>
+          <div class="summary">{$im[summary]}</div>
+          <div class="sub">{$im[ctime]}</div>
+        </td></tr>
+        <!--{/loop}-->
+      </table>
+      <!--{template ruixi:common/pagebar}-->
+    </div>
+  </div>
+  <div class="mwt-col-wd" style="width:350px;">
+    <!--{template ruixi:common/sidearea}-->
+  </div>
+</div>
+
+<!--{template ruixi:common/footer}-->

@@ -17,6 +17,21 @@ $lang = C::m('#ruixi#ruixi_lang')->get();
   <script type="text/javascript" src="{$plugin_path}/template/libs/mwt/4.0/mwt.min.js"></script>
   <script type="text/javascript">var charset='{CHARSET}',cookiepre='{$_G[config][cookie][cookiepre]}',cookiedomain='{$_G[config][cookie][cookiedomain]}',cookiepath='{$_G[config][cookie][cookiepath]}';var language='{$language}';
     function setlang(l){setcookie('lang',l);window.location.reload();}
+    function soproduct(key){window.location="$_G['siteroot']plugin.php?id=ruixi:product&mod=list&key="+key;}
+    function setLocalStorage(k,v) {
+        var key = 'ruixi#'+k;
+        var value = JSON.stringify(v);
+        localStorage.setItem(key, value);
+    }
+    function getLocalStorage(k) {
+        var key = 'ruixi#'+k;
+        var s = localStorage.getItem(key);
+        return JSON.parse(s);
+    }
+    function removeLocalStorage(k) {
+        var key = 'ruixi#'+k; 
+        localStorage.removeItem(key);
+    }
   </script>
 </head>
 <body>
@@ -32,21 +47,22 @@ $lang = C::m('#ruixi#ruixi_lang')->get();
           <li><span></span></li>
           <li><a href="javascript:setlang('zh');">中文</a></li>
         </ul>
+<!--
         <ul class="menuul">
           <li><a href="">{$lang[contact]}</a></li>
           <li><a href="">{$lang[how_to_buy]}</a></li>
           <li><a href="">{$lang[home]}</a></li>
         </ul>
-        <div class="mwt-search"><input id="sokey" type="text" class="mwt-field" style="width:200px;" placeholder="全网站搜索"><i id="sokeybtn" class="fa fa-search"></i></div>
+-->
+        <div class="mwt-search"><input id="sokey" type="text" class="mwt-field" style="width:200px;" placeholder="{$lang[productSearch]}" onchange="soproduct(this.value);"><i id="sokeybtn" class="fa fa-search"></i></div>
       </div>
       <div class="menu-bottom" style="margin-top:20px;">
         <ul class="menuul nav">
-          <li><a href="$_G['siteroot']plugin.php?id=ruixi:product">产品</a></li>
-          <li><a href="$_G['siteroot']plugin.php?id=ruixi:product">市场</a></li>
-          <li><a href="$_G['siteroot']plugin.php?id=ruixi:product">技术</a></li>
-          <li><a href="$_G['siteroot']plugin.php?id=ruixi:product">投资者</a></li>
+          <li><a href="$_G['siteroot']plugin.php?id=ruixi:index"><!--{$lang[home]}--></a></li>
+          <li><a href="$_G['siteroot']plugin.php?id=ruixi:product"><!--{$lang[product]}--></a></li>
           <li><a href="$_G['siteroot']plugin.php?id=ruixi:page&p=company_introduction"><!--{$lang[companyIntroduction]}--></a></li>
-          <li><a href="$_G['siteroot']plugin.php?id=ruixi:page&p=careers"><!--{$lang[careers]}--></a></li>
+          <li><a href="$_G['siteroot']plugin.php?id=ruixi:career"><!--{$lang[careers]}--></a></li>
+          <li><a href="$_G['siteroot']plugin.php?id=ruixi:cart"><!--{$lang[shoppingCart]}--></a></li>
         </ul>
       </div>
     </div>

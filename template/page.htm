@@ -6,24 +6,19 @@
     <h1>{$page[title]}</h1>
     <div class="artical-body">
       {$page[content]}
-      <!--{if $auth>0}-->
-        <div class="adminbar">
-          <a href="$_G['siteurl']/plugin.php?id=ruixi:admin#/page~pkey={$pkey}&lan={$lan}" target="_blank" class="admina">编辑</a>
-        </div>
-      <!--{/if}-->
     </div>
+    <!--{if $mid=='career'}-->
+      <!--{eval $career_email=C::t('#ruixi#ruixi_setting')->fetch('career_email'); }-->
+      <a class="mwt-btn mwt-btn-primary" href="mailto:{$career_email}?subject=[应聘]{$page[title]}">{$lang[applyJob]}</a>
+    <!--{/if}-->
+
+    <!--{if $auth>0}-->
+      <div class="adminbar">
+          <a href="$_G['siteurl']/plugin.php?id=ruixi:admin#/page~pkey={$pkey}&lan={$lan}" target="_blank" class="admina">编辑</a>
+      </div>
+    <!--{/if}-->
   </div>
   <div class="mwt-col-wd" style="width:350px;">
-    <div class="side-pannel">
-      <div class="title">{$sideTitle}</div>
-      <div class="body">
-        <ul class="mwt-ul">
-          <!--{loop $sideList $k $im}-->
-          <li><a href="{$im[url]}">{$im[title]}</a></li>
-          <!--{/loop}-->
-        </ul>
-      </div>
-    </div>
     <!--{template ruixi:common/sidearea}-->
   </div>
 </div>
