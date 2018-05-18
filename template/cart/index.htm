@@ -12,7 +12,6 @@
 </div>
 
 <script>
-
 // 显示购物车产品列表
 function showCartList()
 {/*{{{*/
@@ -23,8 +22,8 @@ function showCartList()
             var item = cart[pid];
             var btncs = 'mwt-btn mwt-btn-default mwt-btn-xs';
             var code = '<tr>'+
-                '<td><div class="productImg"><img src="'+item.imgs[0]+'"></div></td>'+
-                '<td><a href="'+item.url+'" target="_blank">'+item.title+'</a></td>'+
+                '<td width="100"><div class="productImg"><img src="'+item.imgs[0]+'"></div></td>'+
+                '<td><a class="title" href="'+item.url+'" target="_blank">'+item.title+'</a></td>'+
                 '<td width="130">'+
                   '<div class="mwt-btn-group-radius">'+
                     '<a class="'+btncs+'" href="javascript:incCart('+item.productId+',1)">+</a>'+
@@ -43,9 +42,9 @@ function showCartList()
         jQuery('#main-pannel').html(code);
         return;
     }
-    var code = '<table width="100%">'+ls.join('')+'</table>'+
+    var code = '<table class="carttab">'+ls.join('')+'</table>'+
         '<a class="mwt-btn mwt-btn-danger" href="javascript:buynow();">{$lang[buyNow]}</a>&nbsp;&nbsp;'+
-        '<a class="mwt-btn mwt-btn-danger" href="javascript:clearCart();">清空购物车</a>';
+        '<a class="mwt-btn mwt-btn-danger" href="javascript:clearCart();">{$lang[clearCart]}</a>';
     jQuery('#main-pannel').html(code);
 }/*}}}*/
 
@@ -67,7 +66,7 @@ function buynow()
         return;
     }
     var body = '采购列表:%0d%0a%0d%0a'+ls.join('%0d%0a%0d%0a');
-    var url = 'mailto:js_mawentao@163.com?subject=[采购产品]&body='+body;
+    var url = 'mailto:'+setting.sales_email+'?subject=[采购产品]&body='+body;
     window.location = url;
 }/*}}}*/
 

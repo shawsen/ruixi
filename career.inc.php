@@ -15,7 +15,7 @@ try {
     $mid = 'career';
     $module = C::t('#ruixi#ruixi_module')->get_by_pk($mid);
     $sideTitle = isset($module['mname_'.$lan]) ? $module['mname_'.$lan] : $module['mname'];
-    $sideList = C::m('#ruixi#ruixi_page')->getPagesByModule($mid,0,10,'ctime','DESC');
+    $sideList = C::m('#ruixi#ruixi_page')->getPagesByModule($mid,0,10,'displayorder','ASC');
 
     //99.
     $filename = basename(__FILE__);

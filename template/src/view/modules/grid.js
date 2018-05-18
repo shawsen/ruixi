@@ -27,32 +27,37 @@ define(function(require){
             bodyStyle   : '', 
             tbarStyle   : 'margin-bottom:10px;',
             tbar: [
-                {type:'search',id:'so-key-'+gridid,width:300,handler:o.query,placeholder:'搜索关键词'},
-                '->',
-                {label:'添加记录',handler:function(){
-                    dialog.open({id:0},o.query);
-                }}  
+                {type:'search',id:'so-key-'+gridid,width:300,handler:o.query,placeholder:'搜索关键词'}
+                //,'->'
+                //,'<label>添加新模块请找管理员</label>'
             ],
             cm: new MWT.Grid.ColumnModel([
                 {head:'模块ID',dataIndex:'mid',width:120,align:'left',sort:false,render:function(v,item){
                     return v;
                 }},
                 {head:'模块名',dataIndex:'mname',width:120,align:'left',sort:false,render:function(v,item){
-                    return v;
+                    var url = '';
+                    switch (item.mid) {
+                        case 'news': url = dz.siteurl+'plugin.php?id=ruixi:news'; break;
+                        case 'product': url = dz.siteurl+'plugin.php?id=ruixi:product'; break;
+                        case 'company': url = dz.siteurl+'plugin.php?id=ruixi:company'; break;
+                        case 'career': url = dz.siteurl+'plugin.php?id=ruixi:career'; break;
+                    }
+                    return url=='' ? v : '<a class="grida" href="'+url+'" target="_blank">'+v+'</a>';
                 }},
                 {head:'中文名',dataIndex:'mname_zh',width:120,align:'left',sort:false,render:function(v,item){
                     return v;
                 }},
-                {head:'英文名',dataIndex:'mname_en',width:120,align:'left',sort:false,render:function(v,item){
+                {head:'英文名',dataIndex:'mname_en',align:'left',sort:false,render:function(v,item){
                     return v;
                 }},
-                {head:'创建日期',dataIndex:'ctime',width:120,align:'left',sort:false,render:function(v,item){
+                {head:'创建日期',dataIndex:'ctime',width:120,align:'center',sort:false,render:function(v,item){
                     return '<span style="color:#aaa">'+v.substr(0,16)+'</span>';
                 }},
-                {head:'操作',dataIndex:'mid',align:'right',sort:false,render:function(v,item){
+                {head:'操作',dataIndex:'mid',width:120,align:'right',sort:false,render:function(v,item){
                     var editbtn = '<a name="editbtn-'+gridid+'" data-id="'+v+'" href="javascript:;">编辑</a>';
                     var delbtn = '<a name="delbtn-'+gridid+'" data-id="'+v+'" href="javascript:;">删除</a>';
-                    var btns = [editbtn,delbtn];
+                    var btns = [editbtn];
                     return btns.join("&nbsp;&nbsp;");
                 }}
             ])

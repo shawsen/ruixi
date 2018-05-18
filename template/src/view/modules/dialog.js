@@ -54,11 +54,11 @@ define(function(require){
         //3. dialog open event
         dialog.on('open',function(){
             form.reset();
-            if (params.id) {
-                dialog.setTitle("编辑记录");
+            if (params.mid) {
+                dialog.setTitle("编辑模块");
                 form.set(params);
             } else {
-                dialog.setTitle("添加记录");
+                dialog.setTitle("添加模块");
             }
         });
     }/*}}}*/
@@ -76,7 +76,7 @@ define(function(require){
     function submitClick() {
         var data = form.getData();
         try {
-            data.id = params.id;
+            data.mid = params.mid;
             ajax.post('t_ruixi_module&action=save',data,function(res){
                 if (res.retcode!=0) mwt.notify(res.retmsg,1500,'danger');
                 else {

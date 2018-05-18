@@ -13,6 +13,20 @@ class table_ruixi_setting extends discuz_table
 		parent::__construct();
 	}
 
+    // 获取全部配置
+    public function getAllMap() {
+        $map = array();
+        $sql = 'SELECT skey,svalue FROM '.DB::table($this->_table);
+        $res = DB::fetch_all($sql);
+        foreach ($res as &$item) {
+            $k = $item['skey'];
+            $v = $item['svalue'];
+            if ($k=='home_banner') $v=unserialize($v);
+            $map[$k] = $v;
+        }
+        return $map;
+    }
+
     // 获取配置
     public function fetch($skey, $auto_unserialize = false) {
         $sql = 'SELECT svalue FROM '.DB::table($this->_table).' WHERE '.DB::field($this->_pk, $skey);

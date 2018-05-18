@@ -40,7 +40,7 @@ class table_ruixi_module extends discuz_table
         $start = ruixi_validate::getOPParameter('start','start','integer',1024,0);
         $limit = ruixi_validate::getOPParameter('limit','limit','integer',1024,20);
         $where = "isdel=0";
-        if ($key!="") $where.=" AND (mname like '%$key%')";
+        if ($key!="") $where.=" AND (mname like '%$key%' OR mname_en like '%$key%')";
         $table = DB::table($this->_table);
         $sql = <<<EOF
 SELECT SQL_CALC_FOUND_ROWS a.*
@@ -60,18 +60,13 @@ EOF;
     {/*{{{*/
         global $_G;
         $uid = $_G['uid'];
-        $id = ruixi_validate::getNCParameter('id','id','integer');
+        $mid = ruixi_validate::getNCParameter('mid','mid','string',1024);
         $record = array (
             'mname' => ruixi_validate::getNCParameter('mname','mname','string',1024),
             'mname_zh' => ruixi_validate::getNCParameter('mname_zh','mname_zh','string',1024),
             'mname_en' => ruixi_validate::getNCParameter('mname_en','mname_en','string',1024),
-        ); 
-        if ($id==0) {
-            $record['ctime'] = date('Y-m-d H:i:s');
-            return $this->insert($record);
-        } else {
-            return $this->update($id,$record);
-        }
+        );
+        return $this->update($mid,$record);
     }/*}}}*/
 
     // 删除记录

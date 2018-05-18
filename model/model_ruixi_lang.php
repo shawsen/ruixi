@@ -13,10 +13,12 @@ class model_ruixi_lang
         'companyName' => '宁波睿熙科技有限公司',
         'companyAddr' => '浙江省余姚市丰锐路366-4号',
         'companyContact' => '0574-62828223',
-        'copyright' => '版权所有© 2017 睿熙科技。保留所有权利。 ',
+        'companyFax' => '0574-62828189',
+        'copyright' => '版权所有 © 2018 睿熙科技有限公司 保留所有权利。 ',
         'privacy' => '隐私权政策',
         'address' => '公司地址',
         'contact' => '联系我们',
+        'fax' => '传真',
         'viewMore' => '查看更多',
 
         'home' => '主页',
@@ -33,18 +35,21 @@ class model_ruixi_lang
         'search' => '搜索',
         'empty' => '没有相关数据',
         'buyNow' => '立即采购',
+        'clearCart' => '清空采购车',
     );/*}}}*/
 
     // 英文
     private $lang_en = array 
     (/*{{{*/
-        'companyName' => 'Ruixi Sience Company',
+        'companyName' => 'Raysea Technology Company',
         'companyAddr' => 'No. 366-4 Fengjian Road, Yuyao, Zhejiang',
         'companyContact' => '0574-62828223',
-        'copyright' => 'Copyright © 2018 All Rights Reserved.',
+        'companyFax' => '0574-62828189',
+        'copyright' => 'Copyright © 2018 Raysea Technology Co.,Ltd. All rights reserved.',
         'privacy' => 'Privacy',
         'address' => 'Address',
         'contact' => 'Contact',
+        'fax' => 'Fax',
         'viewMore' => 'View More',
 
         'home' => 'Home',
@@ -61,6 +66,7 @@ class model_ruixi_lang
         'search' => 'Search',
         'empty' => 'Get Nothing',
         'buyNow' => 'Buy Now',
+        'clearCart' => 'Clear Cart',
     );/*}}}*/
 
     // 获取选择的语言

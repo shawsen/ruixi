@@ -1,6 +1,7 @@
 <!--{eval
 $language = C::m('#ruixi#ruixi_lang')->getLanguage();
 $lang = C::m('#ruixi#ruixi_lang')->get();
+$setting = C::t('#ruixi#ruixi_setting')->getAllMap();
 }-->
 <!DOCTYPE html>
 <html>
@@ -16,6 +17,7 @@ $lang = C::m('#ruixi#ruixi_lang')->get();
   <script type="text/javascript" src="{$plugin_path}/template/libs/jquery/1.11.2/jquery.min.js"></script>
   <script type="text/javascript" src="{$plugin_path}/template/libs/mwt/4.0/mwt.min.js"></script>
   <script type="text/javascript">var charset='{CHARSET}',cookiepre='{$_G[config][cookie][cookiepre]}',cookiedomain='{$_G[config][cookie][cookiedomain]}',cookiepath='{$_G[config][cookie][cookiepath]}';var language='{$language}';
+    var setting = {eval echo json_encode($setting);};
     function setlang(l){setcookie('lang',l);window.location.reload();}
     function soproduct(key){window.location="$_G['siteroot']plugin.php?id=ruixi:product&mod=list&key="+key;}
     function setLocalStorage(k,v) {

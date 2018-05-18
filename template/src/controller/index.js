@@ -10,6 +10,7 @@ define(function(require){
         // 左部菜单
         menu: [
             {name:'全局配置', icon:'fa fa-bars', submenu:[
+                {name:'公司信息', action:'cominfo'},
                 {name:'首页Banner',action:'banner'},
             ]},
             {name:'模块管理', icon:'fa fa-bars', submenu:[
@@ -22,6 +23,11 @@ define(function(require){
     o.indexAction=function() {
         window.location = '#/index/modules';
     };  
+
+    // 公司信息
+    o.cominfoAction=function(erurl) {
+        require('view/cominfo/page').execute('frame-center',erurl.getQuery());
+    }
 
     // 模块列表
     o.modulesAction=function(erurl) {

@@ -67,7 +67,10 @@ $home_banner = array (
 $home_banner = serialize($home_banner);
 $sql = "INSERT IGNORE INTO $table (skey,svalue) VALUES ".<<<EOF
 ('home_banner','$home_banner'),
-('common_banner','http://img.shawsen.com/banner/004.jpg')
+('common_banner','http://img.shawsen.com/banner/004.jpg'),
+('career_email','info@rayseasc.com'),
+('sales_email','sales@rayseasc.com'),
+('resume_downurl','http://img.shawsen.com/file/简历模板.docx')
 EOF;
 runquery($sql);
 /*}}}*/

@@ -1,0 +1,21 @@
+
+.carttab {width:100%;margin-bottom:20px;}
+
+.carttab tr {border-bottom:dashed 1px #ccc;border-top:dashed 1px #ccc;}
+.carttab td {padding:10px 0;}
+
+.carttab .productImg {width:80px;height:80px;padding:10px;}
+.carttab .productImg img {
+    max-width:50px;
+    max-height:50px;
+}
+
+.carttab a.title {
+    color:#333;
+    text-decoration:none;
+    font:normal 14px Arial,'HeiTi';
+}
+.carttab a.title:hover {
+    text-decoration:underline;
+}
+

@@ -44,14 +44,15 @@ define(function(require){
                     return code;
                 }},
                 {head:'模块',dataIndex:'mid',width:150,align:'left',sort:false,render:function(v,item){
-                    return '['+v+'] '+item.mname;
+                    var url = dz.siteurl+'plugin.php?id=ruixi:'+v;
+                    return '<a class="grida" target="blank" href="'+url+'">['+v+'] '+item.mname+"</a>";
                 }},
-                {head:'页面ID',dataIndex:'pkey',align:'left',sort:false,render:function(v,item){
+                {head:'页面ID',dataIndex:'pkey',width:120,align:'left',sort:false,render:function(v,item){
                     var url = dz.siteurl+'plugin.php?id=ruixi:page&p='+item.pkey;
-                    return '<a href="'+url+'" target="_blank">'+v+'</blank>';
+                    return '<a class="grida" href="'+url+'" target="_blank">'+v+'</blank>';
                 }},
-                {head:'标题',dataIndex:'title',width:120,align:'left',sort:false,render:function(v,item){
-                    return v;
+                {head:'标题',dataIndex:'title',align:'left',sort:false,render:function(v,item){
+                    return v
                 }},
                 /*
                 {head:'阅读次数',dataIndex:'views',width:120,align:'left',sort:false,render:function(v,item){
