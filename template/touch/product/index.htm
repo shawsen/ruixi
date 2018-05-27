@@ -6,8 +6,8 @@ $searchResult = C::m('#ruixi#ruixi_page')->search('news','',$page);
 $pages = $searchResult['annex']['pages'];
 $urlPrefix = $_G['siteurl']."/plugin.php?id=ruixi:news&";
 }-->
-<div class="mwt-row mwt-row-flex wp main-body">
-  <div class="mwt-col-fill artical-pannel">
+<div class="mwt-row wp main-body">
+  <div class="mwt-col-12 artical-pannel">
     <h1>{$lang[product]}</h1>
     <div class="artical-body">
       <p>
@@ -40,7 +40,7 @@ VCSEL是3D成像模组中的关键器件，2017年为人脸识别元年，原因
     </ul>
 
   </div>
-  <div class="mwt-col-wd" style="width:350px;">
+  <div class="mwt-col-12">
     <!--{template ruixi:common/sidearea}-->
   </div>
 </div>

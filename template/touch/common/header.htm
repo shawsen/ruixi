@@ -1,0 +1,106 @@
+<!--{eval
+$language = C::m('#ruixi#ruixi_lang')->getLanguage();
+$lang = C::m('#ruixi#ruixi_lang')->get();
+$setting = C::t('#ruixi#ruixi_setting')->getAllMap();
+}-->
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>{$lang[companyName]}</title>
+  <link rel="icon" href="{$plugin_path}/template/static/logo.png" type="image/png">
+  <link type="text/css" rel="stylesheet" href="{$plugin_path}/template/libs/mwt/4.0/mwt.min.css">
+  <link type="text/css" rel="stylesheet" href="{$plugin_path}/template/src/base.css">
+  <script type="text/javascript" src="$_G['siteroot']static/js/common.js"></script>
+  <script type="text/javascript" src="{$plugin_path}/template/libs/jquery/1.11.2/jquery.min.js"></script>
+  <script type="text/javascript" src="{$plugin_path}/template/libs/mwt/4.0/mwt.min.js"></script>
+  <script type="text/javascript">var charset='{CHARSET}',cookiepre='{$_G[config][cookie][cookiepre]}',cookiedomain='{$_G[config][cookie][cookiedomain]}',cookiepath='{$_G[config][cookie][cookiepath]}';var language='{$language}';
+    var setting = {eval echo json_encode($setting);};
+    function setlang(l){setcookie('lang',l);window.location.reload();}
+    function soproduct(key){window.location="$_G['siteroot']plugin.php?id=ruixi:product&mod=list&key="+key;}
+    function setLocalStorage(k,v) {
+        var key = 'ruixi#'+k;
+        var value = JSON.stringify(v);
+        localStorage.setItem(key, value);
+    }
+    function getLocalStorage(k) {
+        var key = 'ruixi#'+k;
+        var s = localStorage.getItem(key);
+        return JSON.parse(s);
+    }
+    function removeLocalStorage(k) {
+        var key = 'ruixi#'+k; 
+        localStorage.removeItem(key);
+    }
+    function showmenu() {
+        mwt.showFloatDiv('navmenu',-0.1,0,130,'auto',false,'',"background:#404041;");
+        jQuery(document).on("click", function(){
+            jQuery("#navmenu").hide();
+        });
+        jQuery("#navmenu").click(function(event){
+            event.stopPropagation();
+        });
+    }
+  </script>
+  <style>
+.barul {margin:0;padding:10px;}
+.barul li {list-style:none;padding:0;}
+.barul a {color:#fff;padding:5px 10px;text-decoration:none;display:block;}
+  </style>
+</head>
+<body>
+
+<div class="header" style="padding:0">
+  <div class="mwt-row mwt-row-flex wp">
+    <div class="mwt-col-fill" style="text-align:left;">
+      <a href="$_G['siteroot']plugin.php?id=ruixi:index" class="logo"><img style="height:35px;" src="{$plugin_path}/template/static/logo.png"><span>{$lang[companyName]}</span></a>
+    </div>
+    <div class="mwt-col-wd" style="text-align:right;width:40px;">
+      <a href="javascript:showmenu();" style="text-decoration:none;color:#fff;display:block;padding:9px 0 0;"><i class="fa fa-bars"></i></a>
+    </div>
+  </div>
+</div>
+
+<div id="navmenu" style="display:none;">
+  <ul class="barul">
+    <li><a href="$_G['siteroot']plugin.php?id=ruixi:index"><!--{$lang[home]}--></a></li>
+    <li><a href="$_G['siteroot']plugin.php?id=ruixi:product"><!--{$lang[product]}--></a></li>
+    <li><a href="$_G['siteroot']plugin.php?id=ruixi:page&p=company_introduction"><!--{$lang[companyIntroduction]}--></a></li>
+    <li><a href="$_G['siteroot']plugin.php?id=ruixi:career"><!--{$lang[careers]}--></a></li>
+    <li><a href="$_G['siteroot']plugin.php?id=ruixi:cart"><!--{$lang[shoppingCart]}--></a></li>
+  </ul>
+</div>
+
+
+<!--
+<div class="header">
+  <div class="mwt-row mwt-row-flex wp">
+    <div class="mwt-col-wd" style="width:450px;padding-top:8px;">
+      <a href="$_G['siteroot']plugin.php?id=ruixi:index" class="logo"><img src="{$plugin_path}/template/static/logo.png"><span>{$lang[companyName]}</span></a>
+    </div>
+    <div class="mwt-col-fill" style="text-align:right;">
+      <div class="menu-top">
+        <ul class="menuul langul">
+          <li><a href="javascript:setlang('en');">English</a></li>
+          <li><span></span></li>
+          <li><a href="javascript:setlang('zh');">中文</a></li>
+        </ul>
+        <div class="mwt-search"><input id="sokey" type="text" class="mwt-field" style="width:200px;" placeholder="{$lang[productSearch]}" onchange="soproduct(this.value);"><i id="sokeybtn" class="fa fa-search"></i></div>
+      </div>
+      <div class="menu-bottom" style="margin-top:20px;">
+        <ul class="menuul nav">
+          <li><a href="$_G['siteroot']plugin.php?id=ruixi:index"><!--{$lang[home]}--></a></li>
+          <li><a href="$_G['siteroot']plugin.php?id=ruixi:product"><!--{$lang[product]}--></a></li>
+          <li><a href="$_G['siteroot']plugin.php?id=ruixi:page&p=company_introduction"><!--{$lang[companyIntroduction]}--></a></li>
+          <li><a href="$_G['siteroot']plugin.php?id=ruixi:career"><!--{$lang[careers]}--></a></li>
+          <li><a href="$_G['siteroot']plugin.php?id=ruixi:cart"><!--{$lang[shoppingCart]}--></a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+-->
+
+

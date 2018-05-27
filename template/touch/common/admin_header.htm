@@ -1,0 +1,130 @@
+<!--{eval
+$setting=C::m('#ruixi#ruixi_setting')->get();
+$navmenu=C::m('#ruixi#ruixi_nav_setting')->get_navmenu();
+$topheight=50;
+}-->
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>管理后台 - {$setting[page_title]}</title>
+  <link rel="icon" href="{$plugin_path}/template/static/logo.png" type="image/png">
+  <link type="text/css" rel="stylesheet" href="{$plugin_path}/template/libs/mwt/4.0/mwt.min.css">
+  <link type="text/css" rel="stylesheet" href="{$plugin_path}/template/src/admin.css">
+  <link type="text/css" rel="stylesheet" href="{$plugin_path}/template/src/theme/aliyun.css">
+  <script type="text/javascript" src="{$plugin_path}/template/libs/jquery/1.11.2/jquery.min.js"></script>
+  <script type="text/javascript" src="{$plugin_path}/template/libs/mwt/4.0/mwt.min.js"></script>
+  <script type="text/javascript" src="{$plugin_path}/template/libs/requirejs/2.1.9/require.js"></script>
+  <script type="text/javascript" src="{$plugin_path}/template/src/japp.js" charset="utf-8"></script>
+  <style>
+    #frame-head {position:relative;height:{$topheight}px;width:100%;}
+    #frame-body {position:absolute;top:{$topheight}px;left:0;right:0;bottom:0;}
+    /* 页头-Logo区 */
+    #frame-logo {position:absolute;top:0;left:0;width:180px;bottom:0;padding-left:0px;}
+    #frame-logo a {display:block;width:100%;line-height:{$topheight}px;color:#fcfcfc;font-size:13px;text-decoration:none;}
+    #frame-logo a img {display:inline-block;vertical-align:middle;height:22px;}
+    #frame-logo a span {display:inline-block;text-align:center;width:100%;font-size: 18px;
+    font-family: 'HeiTi';font-weight: bold;letter-spacing: 2px;}
+    /* 页头-导航菜单 */
+    #frame-menu {position:absolute;top:0;left:180px;bottom:0;right:0;background:#3D3D45;}
+    .menuul {display:inline-block;margin:0;padding:0;position: absolute;left:10px;bottom: 0;} 
+    .menuul li {list-style-type:none;margin:0;padding:0;float:left;line-height:{$topheight}px;position:relative;}
+    .menuul li a {text-decoration:none;color:#fff;font-size:15px;padding:12px 8px;font-family:'microsoft yahei';cursor:pointer;}
+    .menuul li a:hover,.menuul li a.active {text-decoration:none;color:#FF8907;}
+    .menuul li a i {margin-right:3px;}    
+    /* 子菜单 */
+    .menu-sub{}
+    .menu-sub-ul {display:none;position:absolute;top:40px;left:10px;border:solid 1px #eee;z-index:999;
+        background:#fff;list-style: none;padding: 5px 15px;
+        -webkit-box-shadow: 2px 2px #aaa;
+        -moz-box-shadow: 2px 2px #aaa;
+        box-shadow: 2px 2px #aaa;
+    }
+    .menu-sub:hover+ul, .menu-sub-ul:hover { display:block; }
+    .menu-sub-ul>li { display:block;position:relative;float:none;line-height:30px; }
+    .menu-sub-ul>li>a { display:block;padding:0;font-size:13px;color:#333;white-space:nowrap;}
+    .menu-sub-ul>li>a.active,.menu-sub-ul>li>a:hover {color: #FC8B1C;}
+    /* 页头-用户菜单 */
+    .comdiv {float:right;line-height:{$topheight}px;color:#fff;font-size:14px;padding-right:10px;}
+    .comdiv a {text-decoration:none;color:#fff;}
+    .comdiv .notice {margin-right:8px;}
+    .comdiv .icon {padding-left:0;}
+    #top-notice-icon {margin-right:8px;font-size:15px;}
+    #top-notice-icon.nonempty {color:#FFEB3B;}
+    .userdiv {position:relative;display:inline-block;}
+    .userdiv div {display:none;z-index:999;position:absolute;top:40px;right:0px;padding:5px 0;line-height:30px;
+        border:solid 1px #ccc;background-color:#3D3D45;border-radius: 4px;
+        box-shadow: 0 1px 3px 0 rgba(0,0,0,.2),0 1px 1px 0 rgba(0,0,0,.14),0 2px 1px -1px rgba(0,0,0,.12);
+    }
+    .userdiv:hover div {display:block;}
+    .userdiv:hover div a:hover {color:#FF8907;}
+    .userdiv .icon-contact {font-size:18px;margin-right:5px;vertical-align:text-bottom;}
+    .userdiv-sub a {padding:0px 10px;white-space:nowrap;}
+    .userdiv-sub i {padding:0;}
+  </style>
+</head>
+<body>
+<!--frame-head-->
+<div id="frame-head">
+  <div id="frame-logo" style="width:{$sidewidth}px;">
+    <a href="#/"><span><i class="fa fa-cogs"></i> 管理后台</span></a>
+  </div>
+  <div id="frame-menu" style="left:{$sidewidth}px;">
+    <!--导航菜单-->
+    <ul class="menuul">
+      <!--{loop $navmenu $k $im}-->
+      <li>
+        <a id="navmenu-{$im[text]}" name="navmenu" href="{$im[href]}"<!--{if $im[newtab]}--> target="_blank"<!--{/if}-->class="menu-item<!--{if $im[subitems]}--> menu-sub<!--{/if}-->"><i class="{$im[icon]}" style="padding-left:0;font-size:15px;"></i>{$im[text]}<!--{if $im[subitems]}--><i class="fa fa-angle-down" style="margin-left:2px;vertical-align:middle;font-size:16px;"></i><!--{/if}--></a>
+        <!--{if $im[subitems]}-->
+        <ul class="menu-sub-ul">
+          <!--{loop $im[subitems] $m $sim}-->
+          <li><a href="{$sim[href]}"{if $sim[newtab]} target="_blank"{/if}><i class="{$sim[icon]}"></i> <!--{$sim[text]}--></a></li>
+          <!--{/loop}-->
+        </ul>
+        <!--{/if}-->
+      </li>
+      <!--{/loop}-->
+    </ul>
+    <!--个人中心-->
+    <div class="comdiv">
+      <!--<a href="plugin.php?id=mis&mod=uc#/uc/notice"><i id="top-notice-icon" class="fa fa-envelope-o {if $newmsg}nonempty{/if}"></i></a>-->
+      <div class="userdiv">
+        <a href="plugin.php?id=mis&mod=uc"><i class="icon icon-contact"></i>{$_G['username']}</a>
+        <div class="userdiv-sub">
+          <a href="#/uc/changepass"><i class="icon icon-lock"></i> 修改密码</a><br>
+          <a href="{$plugin_path}/index.php?version=4&module=uc&action=logout"><i class="icon icon-logout"></i> 退出</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--frame-body-->
+<div id="frame-body"></div>
+<script>
+// 全局参数
+var setting = {echo json_encode($setting);};
+var dz = {
+	// 基础信息
+	controller : '{$controller}',
+	siteurl    : '$_G['siteurl']',
+	pluginpath : '{$plugin_path}',
+	ajaxapi    : '{$plugin_path}/index.php?version=4&module=',
+	seccodeurl : '{$plugin_path}/index.php?version=4&module=seccode',
+	// 用户信息
+	uid      : $_G[uid],
+	groupid  : $_G[groupid],
+	username : '$_G['username']',
+	avatar   : '{avatar($_G['uid'],'',true)}'
+};
+// 选中top菜单
+function activeTopNav(name){
+    jQuery('[name=navmenu]').removeClass('active');
+    jQuery('#navmenu-'+name).addClass('active');
+}
+var japp=new JApp('{$plugin_path}/template/src/');
+japp.init();
+</script>
+
+

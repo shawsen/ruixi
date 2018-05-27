@@ -1,0 +1,10 @@
+<!--{eval
+// $page,$pages,$urlPrefix
+}-->
+
+<div style="text-align:center;">
+  <!--{loop $pages $p}-->
+  <a class="mwt-btn mwt-btn-default mwt-btn-xs" {if $p==$page}disabled{/if} href="{$urlPrefix}page={$p}" style="color:#666;margin-right:5px;font-family:'microsoft yahei';">{$p}</a>
+  <!--{/loop}-->
+</div>
+

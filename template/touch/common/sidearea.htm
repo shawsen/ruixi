@@ -1,0 +1,33 @@
+
+<!--side pannel-->
+<div class="side-pannel" style="margin:10px 0;">
+    <div class="title">
+        <!--{if $mid=='news'}-->
+          <a href="$_G['siteurl']/plugin.php?id=ruixi:news">{$sideTitle}</a>
+        <!--{elseif $mid=='product'}-->
+          <a href="$_G['siteurl']/plugin.php?id=ruixi:product">{$sideTitle}</a>
+        <!--{elseif $mid=='career'}-->
+          <a href="$_G['siteurl']/plugin.php?id=ruixi:career">{$sideTitle}</a>
+        <!--{else}-->
+          <a href="javascript:;">{$sideTitle}</a>
+        <!--{/if}-->
+    </div>
+    <div class="body">
+        <ul class="mwt-ul">
+          <!--{loop $sideList $k $im}-->
+          <li><a href="{$im[url]}">{$im[title]}</a></li>
+          <!--{/loop}-->
+        </ul>
+    </div>
+</div>
+
+<!--Search-->
+<div class="side-pannel" style="background:#d8d9da; margin:10px 0;">
+  <div class="body">
+    <div style="font-size:14px;font-family:'HeiTi';margin-bottom:5px;">{$lang[productSearch]}</div>
+    <div class="mwt-search">
+      <input id="sokey" type="text" class="mwt-field" style="width:270px;" placeholder="{$lang[productSearch]}" onchange="soproduct(this.value);">
+      <i id="sokeybtn" class="fa fa-search"></i>
+      </div>
+  </div>
+</div>

@@ -24,7 +24,8 @@
     <tr><th colspan="15" class="partition">使用提示</th></tr>
     <tr><td class="tipsblock" s="1">
       <ul id="lis">
-        <li>系统地址：<a href="<%siteurl%>/plugin.php?id=ruixi:index" target="_blank"><%siteurl%>/plugin.php?id=ruixi:index</a></li>
+        <li>公司首页地址：<a href="<%siteurl%>/plugin.php?id=ruixi:index" target="_blank"><%siteurl%>/plugin.php?id=ruixi:index</a></li>
+        <li>管理后台地址：<a href="<%siteurl%>/plugin.php?id=ruixi:admin" target="_blank"><%siteurl%>/plugin.php?id=ruixi:admin</a></li>
       </ul>
     </td></tr>
   </table>

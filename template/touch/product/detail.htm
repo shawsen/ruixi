@@ -1,0 +1,42 @@
+<!--{template ruixi:common/header}-->
+<!--{template ruixi:common/common_banner}-->
+<div class="mwt-row wp main-body">
+  <div class="mwt-col-12 artical-pannel">
+    <h1>{$product[title]}</h1>
+    <div class="artical-body">
+      <div class="productImg" style="display:inline-block;float:left;margin-right:20px;width:200px;height:160px;">
+        <img src="{$product[imgs][0]}" style="max-width:160px;max-height:120px;">
+      </div>
+      {$product[desc]}
+    </div>
+    <a class="mwt-btn mwt-btn-inverse mwt-btn-sm" 
+       href="javascript:putInCart({$product[productId]});">{$lang[buyNow]} <i class="icon icon-cart"></i></a>
+  </div>
+  <div class="mwt-col-12">
+    <!--{template ruixi:common/sidearea}-->
+  </div>
+</div>
+<script>
+var product={eval echo json_encode($product);};
+
+function putInCart(productId)
+{
+    var cart = getLocalStorage('cart');
+    if (!cart) cart = {};
+    if (!cart[productId]) {
+        cart[productId] = product;
+        cart[productId]['num'] = 0;
+/*
+        {
+            'id': productId,
+            'num': 0
+        };
+*/
+    }
+    cart[productId]['num']++;
+    setLocalStorage('cart',cart);
+    mwt.notify('已放入采购车',1500,'success');
+}
+
+</script>
+<!--{template ruixi:common/footer}-->

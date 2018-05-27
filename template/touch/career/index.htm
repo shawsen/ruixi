@@ -1,0 +1,32 @@
+<!--{template ruixi:common/header}-->
+<!--{template ruixi:common/common_banner}-->
+<!--{eval
+$page = isset($_GET['page']) ? intval($_GET['page']) : 1;
+$searchResult = C::m('#ruixi#ruixi_page')->search($mid,'',$page,15);
+$pages = $searchResult['annex']['pages'];
+$urlPrefix = $_G['siteurl']."/plugin.php?id=ruixi:career&";
+}-->
+<div class="mwt-row wp main-body">
+  <div class="mwt-col-12 artical-pannel">
+    <h1>{$lang[careers]}</h1>
+    <div class="artical-body">
+      <hr>
+      <table class="sotab">
+        <!--{loop $searchResult[root] $k $im}-->
+        <tr>
+          <td>
+            <a href="{$im[url]}" class="title" style="font-size:13px;"><i class="fa fa-caret-right" style="font-family:FontAwesome;margin-right:6px;"></i> {$im[title]}</a>
+          </td>
+          <td><div class="sub">{$im[ctime]}</div></td>
+        </tr>
+        <!--{/loop}-->
+      </table>
+      <!--{template ruixi:common/pagebar}-->
+    </div>
+  </div>
+  <div class="mwt-col-12">
+    <!--{template ruixi:common/sidearea}-->
+  </div>
+</div>
+
+<!--{template ruixi:common/footer}-->

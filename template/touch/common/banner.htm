@@ -1,0 +1,36 @@
+<!--{eval
+$banners = C::t('#ruixi#ruixi_setting')->fetch('home_banner',true);
+}-->
+<link type="text/css" rel="stylesheet" href="{$plugin_path}/template/libs/swiper/3.3.1/swiper.css">
+<script type="text/javascript" src="{$plugin_path}/template/libs/swiper/3.3.1/swiper.jquery.min.js"></script>
+<style>
+  .swiper-pagination {text-align:left;padding-left:30px;}
+  .swiper-pagination-bullet {border-radius:0;width:12px;height:12px;background:rgba(255,255,255,0.7);}
+</style>
+
+<div class="swiper-container swiper-container-horizontal swiper-container-fade" style="height:auto;">
+  <div class="swiper-wrapper">
+    <!--{loop $banners $i $banner}-->
+    <div class="swiper-slide"><a href="{$banner[link]}"><img src="{$banner[img]}" style="width:100%;"></a></div>
+    <!--{/loop}-->
+  </div>
+    <!-- Add Pagination -->
+    <div class="swiper-pagination swiper-pagination-clickable swiper-pagination-bullets">
+      <!--{loop $banners $i $banner}-->
+      <span class="swiper-pagination-bullet{if $i==0} swiper-pagination-bullet-active{/if}"></span>
+      <!--{/loop}-->
+    </div>
+</div>
+
+<script>
+    var swiper = new Swiper('.swiper-container', {
+        pagination: '.swiper-pagination',
+        paginationClickable: true,
+        preloadImages: false,
+        lazyLoading: true,
+        autoplay: 3000,
+        autoplayDisableOnInteraction: false,
+        effect: 'fade'
+    });
+</script>
+

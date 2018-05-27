@@ -1,0 +1,118 @@
+<!--{template ruixi:common/header}-->
+<!--{template ruixi:common/common_banner}-->
+<div class="mwt-row wp main-body">
+  <div class="mwt-col-12 artical-pannel">
+    <h1>{$lang[shoppingCart]}</h1>
+    <div id="main-pannel">
+    </div>
+  </div>
+  <div class="mwt-col-12" style="width:350px;">
+    <!--{template ruixi:common/sidearea}-->
+  </div>
+</div>
+
+<script>
+// 显示购物车产品列表
+function showCartList()
+{/*{{{*/
+    var ls = [];
+    var cart = getLocalStorage('cart');
+    if (cart) {
+        for (var pid in cart) {
+            var item = cart[pid];
+            var btncs = 'mwt-btn mwt-btn-default mwt-btn-xs';
+            var code = '<tr>'+
+                '<td width="100"><div class="productImg"><img src="'+item.imgs[0]+'"></div></td>'+
+                '<td><a class="title" href="'+item.url+'" target="_blank">'+item.title+'</a></td>'+
+                '<td width="130">'+
+                  '<div class="mwt-btn-group-radius">'+
+                    '<a class="'+btncs+'" href="javascript:incCart('+item.productId+',1)">+</a>'+
+                    '<button class="'+btncs+'" disabled>'+item.num+'</button>'+
+                    '<a class="'+btncs+'" href="javascript:incCart('+item.productId+',-1)">-</a>'+
+                  '</div>&nbsp;&nbsp;'+
+                  '<a class="mwt-btn mwt-btn-danger mwt-btn-xs radius" '+
+                     'href="javascript:removeProduct('+item.productId+')"><i class="fa fa-trash"></a>'+
+                '</td>'+
+            '</tr>';
+            ls.push(code);
+        }
+    }
+    if (!ls.length) {
+        var code = '<div class="empty">{$lang[empty]}</div>';
+        jQuery('#main-pannel').html(code);
+        return;
+    }
+    var code = '<table class="carttab">'+ls.join('')+'</table>'+
+        '<a class="mwt-btn mwt-btn-danger" href="javascript:buynow();">{$lang[buyNow]}</a>&nbsp;&nbsp;'+
+        '<a class="mwt-btn mwt-btn-danger" href="javascript:clearCart();">{$lang[clearCart]}</a>';
+    jQuery('#main-pannel').html(code);
+}/*}}}*/
+
+// 立即采购(发邮件)
+function buynow()
+{/*{{{*/
+    var ls = [];
+    var cart = getLocalStorage('cart');
+    if (cart) {
+        for (var pid in cart) {
+            var item = cart[pid];
+            if (!item.num) continue;
+            var code = '产品: '+item.title + '%0d%0a数量: '+item.num;
+            ls.push(code);
+        }
+    }
+    if (!ls.length) {
+        mwt.notify('采购车是空的',1500,'danger');
+        return;
+    }
+    var body = '采购列表:%0d%0a%0d%0a'+ls.join('%0d%0a%0d%0a');
+    var url = 'mailto:'+setting.sales_email+'?subject=[采购产品]&body='+body;
+    window.location = url;
+}/*}}}*/
+
+// 调整数量
+function incCart(pid,v)
+{/*{{{*/
+    var cart = getLocalStorage('cart');
+    if (!cart || !cart[pid]) {
+        return;
+    }
+    cart[pid]['num'] += v;
+    if (cart[pid]['num']<0) cart[pid]['num']=0;
+    setLocalStorage('cart',cart);
+    showCartList();
+}/*}}}*/
+
+// 从购物车删除某一项
+function removeProduct(pid) 
+{/*{{{*/
+    mwt.confirm('确定删除吗?',function(res){
+        if (res) {
+            var cart = getLocalStorage('cart');
+            if (cart) {
+                delete cart[pid];
+            }
+            setLocalStorage('cart',cart);
+            showCartList();
+        }
+    });
+}/*}}}*/
+
+// 清空购物车
+function clearCart()
+{/*{{{*/
+    mwt.confirm('确定清空购物车吗?',function(res){
+        if (res) {
+            removeLocalStorage('cart');
+            showCartList();
+        }
+    });
+}/*}}}*/
+
+jQuery(document).ready(function(){
+    showCartList();
+});
+
+</script>
+
+<!--{template ruixi:common/footer}-->

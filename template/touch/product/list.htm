@@ -1,0 +1,41 @@
+<!--{template ruixi:common/header}-->
+<!--{template ruixi:common/common_banner}-->
+<!--{eval
+$page = isset($_GET['page']) ? intval($_GET['page']) : 1;
+$searchResult = C::t('#ruixi#ruixi_product')->search($cateId,$key,$page,5);
+$pages = $searchResult['annex']['pages'];
+$urlPrefix = $_G['siteurl']."/plugin.php?id=ruixi:product&mod=list&cate=".$cateId."&";
+}-->
+<div class="mwt-row wp main-body">
+  <div class="mwt-col-12 artical-pannel">
+    <h1>{$title}</h1>
+    <div class="artical-body">
+      {$desc}
+      <hr>
+      <!--产品列表-->
+      <!--{if empty($searchResult[root])}-->
+        <div class="empty">{$lang[empty]}</div>
+      <!--{/if}-->
+      <table class="sotab">
+        <!--{loop $searchResult[root] $k $im}-->
+        <tr>
+          <td width="160">
+            <a class="productImg" href="{$im[url]}"><img src="{$im[imgurl]}"></a>
+          </td>
+          <td>
+            <a href="{$im[url]}" class="title" target="_blank">{$im[title]}</a>
+            <div style="font-size:14px;margin:3px 0;">{$im[cateName]}</div>
+            <div class="summary">{$im[summary]}</div>
+          </td>
+        </tr>
+        <!--{/loop}-->
+      </table>
+      <!--{template ruixi:common/pagebar}-->
+    </div>
+  </div>
+  <div class="mwt-col-12">
+    <!--{template ruixi:common/sidearea}-->
+  </div>
+</div>
+
+<!--{template ruixi:common/footer}-->

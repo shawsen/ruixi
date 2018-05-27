@@ -16,7 +16,11 @@ define(function(require){
             {name:'模块管理', icon:'fa fa-bars', submenu:[
                 {name:'模块列表',action:'modules'},
                 {name:'页面列表',action:'pages'}
-            ]}
+            ]},
+            {name:'产品管理', icon:'fa fa-bars', submenu:[
+                {name:'产品分类',action:'productCate'},
+                {name:'产品列表',action:'productList'}
+            ]},
         ]
     };
 
@@ -36,6 +40,16 @@ define(function(require){
     // 页面列表
     o.pagesAction=function(erurl) {
         require('view/pages/page').execute('frame-center',erurl.getQuery());
+    };
+
+    // 产品分类
+    o.productCateAction=function(erurl) {
+        require('view/product/cate/page').execute('frame-center',erurl.getQuery());
+    };
+
+    // 产品列表
+    o.productListAction=function(erurl) {
+        require('view/product/list/page').execute('frame-center',erurl.getQuery());
     };
 
 

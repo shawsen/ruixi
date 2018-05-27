@@ -11,7 +11,7 @@ class model_ruixi_lang
     private $lang_zh = array 
     (/*{{{*/
         'companyName' => '宁波睿熙科技有限公司',
-        'companyAddr' => '浙江省余姚市丰锐路366-4号',
+        'companyAddr' => '浙江省余姚市丰悦路366-4号',
         'companyContact' => '0574-62828223',
         'companyFax' => '0574-62828189',
         'copyright' => '版权所有 © 2018 睿熙科技有限公司 保留所有权利。 ',
@@ -42,7 +42,7 @@ class model_ruixi_lang
     private $lang_en = array 
     (/*{{{*/
         'companyName' => 'Raysea Technology Company',
-        'companyAddr' => 'No. 366-4 Fengjian Road, Yuyao, Zhejiang',
+        'companyAddr' => 'No. 366-4 Fengyue Road, Yuyao, Zhejiang',
         'companyContact' => '0574-62828223',
         'companyFax' => '0574-62828189',
         'copyright' => 'Copyright © 2018 Raysea Technology Co.,Ltd. All rights reserved.',

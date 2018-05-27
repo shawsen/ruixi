@@ -2,7 +2,7 @@
 .artical-pannel {margin:10px 0;}
 .artical-pannel h1 {color:#00539e;font-size:26px;line-height: 1.2em;margin:0 0 15px;font-family:'HeiTi';font-weight:normal;}
 .artical-body {
-    font-size:13px;font-family:'HeiTi';
+    font-size:15px;font-family:'HeiTi';
     line-height: 1.5em;
     color: #58595b;
     margin-bottom:10px;
@@ -11,6 +11,7 @@
 
 .artical-body ul {margin:0}
 .artical-body a {color:#2196F3;}
+.artical-body img {max-width:100%;}
 
 .sotab { width:100%;border-collapse:collapse; }
 .sotab td {vertical-align:top;padding:5px 0 5px;}
