@@ -1,3 +1,15 @@
+#nfooter {
+    height: auto;
+    padding:10px 0;
+    background-color: #232323;    
+}
+#nfooter ul {display:inline-block;vertical-align:top;padding:0;margin:10px 10px;}
+#nfooter ul li {list-style-type:none;float:left;padding:0 20px;border-right:solid 1px #fff;}
+#nfooter ul li:last-child {border:none;}
+#nfooter li a {color:#fff;text-decoration:none;font-size:13px;}
+#nfooter li a:hover {text-decoration:underline;}
+
+
 
 #footer {
     background: #999;
@@ -23,4 +35,4 @@
 .foot-logo span {font-size:14px;font-family:'HeiTi';vertical-align:sub;}
 
 .footer-ul {display:inline-block;vertical-align:top;margin:0 50px 0 0;padding:0;}
-.footer-ul li {list-style-type:none;margin:0 0 15px;padding:0;}
+.footer-ul li {list-style-type:none;margin:0 0 15px;padding:0;max-width:350px;}

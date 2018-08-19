@@ -1,4 +1,27 @@
-<div id="footer">
+<div id="nfooter">
+  <table width="100%"><tr>
+  <td>
+    <ul>
+      <li><a href="$_G['siteroot']plugin.php?id=ruixi:index"><!--{$lang[home]}--></a></li>
+      <li><a href="$_G['siteroot']plugin.php?id=ruixi:product"><!--{$lang[product]}--></a></li>
+      <li><a href="$_G['siteroot']plugin.php?id=ruixi:page&p=company_introduction"><!--{$lang[companyIntroduction]}--></a></li>
+      <li><a href="$_G['siteroot']plugin.php?id=ruixi:career"><!--{$lang[careers]}--></a></li>
+      <li><a href="$_G['siteroot']plugin.php?id=ruixi:cart"><!--{$lang[shoppingCart]}--></a></li>
+      <li style="color:#aaa;font-size:12px;">{$lang[contact]}: {$lang[companyContact]} {$lang[fax]}: {$lang[companyFax]}</li>
+    </ul>
+    <div style="margin:2px 30px;color:#aaa;font-size:12px;">
+      {$lang[address]}: {$lang[companyAddr]}  <span style="margin-left:40px;">{$lang[copyright]} {$lang[privacy]}</span>
+    </div>
+  </td>
+  <td width="120" align="center">
+    <img src="{$plugin_path}/template/static/logo.png" style="width:70px;background:#fff;padding:10px;">
+  </td>
+  </tr></table>
+</div>
+
+
+
+<div id="footer" style="display:none;">
   <div class="mwt-row wp">
     <div class="mwt-col-6">
       <div class="foot-logo">
@@ -19,7 +42,7 @@
         <li><a href="$_G['siteroot']plugin.php?id=ruixi:cart"><!--{$lang[shoppingCart]}--></a></li>
       </ul>
       <ul class="footer-ul">
-        <li>{$lang[address]}: {$lang[companyAddr]}</li>
+        <li>{$lang[address]}: <br>{$lang[companyAddr]}</li>
         <li>{$lang[contact]}: {$lang[companyContact]}</li>
         <li>{$lang[fax]}: {$lang[companyFax]}</li>
         <li>E-mail: 
@@ -30,5 +53,6 @@
     </div>
   </div>  
 </div>
+
 </body>
 </html>

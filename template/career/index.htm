@@ -11,13 +11,19 @@ $urlPrefix = $_G['siteurl']."/plugin.php?id=ruixi:career&";
     <h1>{$lang[careers]}</h1>
     <div class="artical-body">
       <hr>
-      <table class="sotab">
+      <table class="sotab bordered">
+        <tr>
+          <th align="left">招聘岗位</th>
+          <th align="center">所属公司</th>
+          <th align="center">发布日期</th>
+        </tr>
         <!--{loop $searchResult[root] $k $im}-->
         <tr>
           <td>
             <a href="{$im[url]}" class="title" style="font-size:13px;"><i class="fa fa-caret-right" style="font-family:FontAwesome;margin-right:6px;"></i> {$im[title]}</a>
           </td>
-          <td><div class="sub">{$im[ctime]}</div></td>
+          <td align="center">{$lang[companyName]}</td>
+          <td align="center">{$im[ctime]}</div></td>
         </tr>
         <!--{/loop}-->
       </table>

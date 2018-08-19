@@ -19,3 +19,10 @@
 .sotab a.title:hover {text-decoration:underline;}
 .sotab .sub {text-align:right;color:#999;}
 
+.sotab.bordered {
+    margin-bottom:5px;
+}
+.sotab.bordered td,.sotab.bordered th {
+    border:solid 1px #ccc;
+    padding:5px;
+}
