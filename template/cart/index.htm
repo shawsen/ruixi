@@ -57,7 +57,7 @@ function buynow()
         for (var pid in cart) {
             var item = cart[pid];
             if (!item.num) continue;
-            var code = '产品: '+item.title + '%0d%0a数量: '+item.num;
+            var code = encodeURIComponent('产品: '+item.title)+ '%0d%0a'+encodeURIComponent('数量: ')+item.num;
             ls.push(code);
         }
     }
@@ -65,8 +65,9 @@ function buynow()
         mwt.notify('采购车是空的',1500,'danger');
         return;
     }
-    var body = '采购列表:%0d%0a%0d%0a'+ls.join('%0d%0a%0d%0a');
-    var url = 'mailto:'+setting.sales_email+'?subject=[采购产品]&body='+body;
+    var subject = encodeURIComponent("[采购产品]");
+    var body = encodeURIComponent('采购列表')+':%0d%0a%0d%0a'+ls.join('%0d%0a%0d%0a');
+    var url = 'mailto:'+setting.sales_email+'?subject='+subject+'&body='+body;
     window.location = url;
 }/*}}}*/
 

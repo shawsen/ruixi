@@ -9,7 +9,7 @@
     </div>
     <!--{if $mid=='career'}-->
       <!--{eval $career_email=C::t('#ruixi#ruixi_setting')->fetch('career_email'); }-->
-      <a class="mwt-btn mwt-btn-primary" href="mailto:{$career_email}?subject=[应聘]{$page[title]}">{$lang[applyJob]}</a>
+      <a class="mwt-btn mwt-btn-primary" href="mailto:{$career_email}?subject={$mailTitle}">{$lang[applyJob]}</a>
       <a class="mwt-btn mwt-btn-danger" href="{$setting[resume_downurl]}" target="_blank">{$lang[down_resume]}</a>
     <!--{/if}-->
 

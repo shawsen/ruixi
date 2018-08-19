@@ -33,6 +33,10 @@ try {
             break;
     };
     //99.
+    $mailTitle = "[应聘]".$page['title'];
+    $mailTitle = rawurlencode($mailTitle);
+//    $mailTitle = iconv("GBK","UTF-8//ignore",$mailTitle);
+
     $filename = basename(__FILE__);
     list($controller) = explode('.',$filename);
     include template("ruixi:page");
