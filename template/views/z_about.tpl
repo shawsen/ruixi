@@ -20,7 +20,6 @@
     <tr><td class="tipsblock" colspan="15">
       <ul id="lis">
         <li><a href="<%siteurl%>/plugin.php?id=ruixi" target="_blank"><%siteurl%>/plugin.php?id=ruixi</a></li>
-        <li><a href="<%siteurl%>/plugin.php?id=ruixi:admin" target="_blank"><%siteurl%>/plugin.php?id=ruixi:admin</a></li>
       </ul>
 	</td></tr>
   </table>
