@@ -44,7 +44,7 @@ $setting = C::t('#ruixi#ruixi_setting')->getAllMap();
     </div>
     <div class="mwt-col-fill" style="text-align:right;">
       <div class="menu-top">
-        <ul class="menuul langul" style="display:none;">
+        <ul class="menuul langul" style="">
           <li><a href="javascript:setlang('en');">English</a></li>
           <li><span></span></li>
           <li><a href="javascript:setlang('zh');">中文</a></li>
@@ -61,6 +61,7 @@ $setting = C::t('#ruixi#ruixi_setting')->getAllMap();
       <div class="menu-bottom" style="margin-top:20px;">
         <ul class="menuul nav">
           <li><a href="$_G['siteroot']plugin.php?id=ruixi:index"><!--{$lang[home]}--></a></li>
+          <li><a href="$_G['siteroot']plugin.php?id=ruixi:news"><!--{$lang[news]}--></a></li>
           <li><a href="$_G['siteroot']plugin.php?id=ruixi:product"><!--{$lang[product]}--></a></li>
           <li><a href="$_G['siteroot']plugin.php?id=ruixi:page&p=company_introduction"><!--{$lang[companyIntroduction]}--></a></li>
           <li><a href="$_G['siteroot']plugin.php?id=ruixi:career"><!--{$lang[careers]}--></a></li>
